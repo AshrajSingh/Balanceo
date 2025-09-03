@@ -1,0 +1,10 @@
+.expenseGraph {
+    margin: auto;
+    flex: 1 1 50%; /* flexible, responsive half-width */
+}
+
+.expenseGraph p {
+    margin: auto 1.75rem;
+    padding: 0;
+    display: none; /* replaces width/height 0 */
+}

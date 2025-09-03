@@ -1,0 +1,10 @@
+.dashboard{
+    font-family: "Poppins", sans-serif;
+}
+
+@media screen and (max-width: 480px){
+    .dashboard{
+        display: inline-block;
+        width: 300rem;
+    }
+}
