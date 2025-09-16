@@ -2,6 +2,8 @@ import cors from 'cors'
 import express from 'express'
 import logInRoutes from './routes/logInLogic.js'
 import signInRoutes from './routes/signInLogic.js'
+import dashboardRoutes from './routes/dashboard.js'
+import expensesRoutes from './routes/expenses.js'
 import mongoose from 'mongoose'
 import dotenv from "dotenv";
 dotenv.config();
@@ -11,8 +13,10 @@ const app = express()
 app.use(express.json())
 app.use(cors());
 
-app.use('/api',logInRoutes)
-app.use('/api',signInRoutes)
+app.use('/api', logInRoutes)
+app.use('/api', signInRoutes)
+// app.use('/api', dashboardRoutes)
+app.use('/api', expensesRoutes)
 
 
 mongoose.connect(process.env.MONGO_URI)

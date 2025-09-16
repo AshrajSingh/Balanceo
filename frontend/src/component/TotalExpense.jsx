@@ -11,8 +11,6 @@ import { useEffect, useState } from 'react';
 export default function TotalExpense() {
     const data = useRecoilValue(expenseAtom)
     const [colors, setColors] = useState({})
-
-    console.log(data)
     // localStorage.removeItem("expenseColors") 
 
     useEffect(() => {
@@ -20,8 +18,8 @@ export default function TotalExpense() {
         const updatedColors = { ...savedColors }
 
         data.map((items) => {
-            if (!updatedColors[items.source]) {
-                updatedColors[items.source] = generateRandomColor();
+            if (!updatedColors[items.expense]) {
+                updatedColors[items.expense] = generateRandomColor();
             }
         })
         setColors(updatedColors);
@@ -40,12 +38,12 @@ export default function TotalExpense() {
                     cx="50%"
                     cy="50%"
                     outerRadius={100}
-                    dataKey="amount"
-                    nameKey="source"
+                    dataKey="expenseAmount"
+                    nameKey="expense"
                     label
                 >
                     {data.map((entry, index) => (
-                        <Cell key={index} fill={colors[entry.source] || "#8884d8"} />
+                        <Cell key={index} fill={colors[entry.expense] || "#8884d8"} />
                     ))}
                 </Pie>
                 <Tooltip />

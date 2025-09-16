@@ -41,6 +41,16 @@ export default function SignInPage({ onBack }) {
 
             // If validation passes, send to server
             const response = await signInUser(signIn)
+            console.log("signin Response: ", response)
+
+            // console.log("signin userId: ", user_id)
+            localStorage.setItem("user", JSON.stringify({
+                isLoggedIn: true,
+                username: signIn.username,
+                user_id: response.user_id,
+                token: response.token
+            }))
+
             setAuth({isLoggedIn: true, user: signIn.email})
             navigate("/dashboard")
             

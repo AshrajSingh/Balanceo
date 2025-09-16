@@ -41,11 +41,13 @@ export default function LoginPage() {
             }
 
             const response = await logInUser(userData)
-            console.log("After response");
+            console.log("Response: ", response)
 
             localStorage.setItem("user", JSON.stringify({
                 isLoggedIn: true,
-                user: userData.email
+                user_id: response.user_id,
+                user: userData.email,
+                token: response.token
             }))
             
             setAuth({isLoggedIn: true, user: userData.email})

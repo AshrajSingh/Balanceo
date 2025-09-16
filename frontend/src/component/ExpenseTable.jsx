@@ -3,34 +3,54 @@ import '../styleSheets/TableWrapper.css'
 import { useRecoilState } from "recoil";
 import { expenseAtom } from "../store/userAtom";
 import { useState } from "react";
+import { deleteExpenses, setUserdata } from "../services/authService";
 
 export default function ExpenseTable() {
     const [data, setData] = useRecoilState(expenseAtom)
     const [isAdding, setIsAdding] = useState(false)
-    const [newRow, setNewRow] = useState({ source: '', amount: '' })
+    const [newRow, setNewRow] = useState({ expense: '', expenseAmount: '' })
 
-    function handleBlur() {
-        if (newRow.source.trim() !== '' && newRow.amount.trim() !== '') {
-            setData(prev => ([...prev, { ...newRow, amount: Number(newRow.amount) }]))
-            setNewRow({ source: '', amount: '' })
+    async function handleBlur() {
+        const userData = localStorage.getItem("user")
+        const id_data = JSON.parse(userData)
+        const id = id_data.user_id
+
+        if (newRow.expense.trim() !== '' && newRow.expenseAmount.trim() !== '') {
+            console.log("setUserData params: ", id, newRow.expense, newRow.expenseAmount)
+
+            const payload = {
+                userId: id,
+                expense: newRow.expense,
+                expenseAmount: Number(newRow.expenseAmount)
+            }
+
+            console.log("after payload: ", payload)
+            const userData = await setUserdata(payload)
+            console.log("userData from ExpenseTable.jsx", userData)
+            setData(prev => [...prev, userData])
+
+            setNewRow({ expense: '', expenseAmount: '' })
             setIsAdding(false)
         }
-        if (newRow.source.trim() === '' && newRow.amount.trim() === "") {
+        if (newRow.expense.trim() === '' && newRow.expenseAmount.trim() === "") {
             setIsAdding(false)
         }
     }
 
-    function deleteItems(index) {
-        const confirmDelete = confirm("You want to delete an item?")
-        if (confirmDelete) {
-            setData((prev) => {
-                const updatedColors = prev.filter((_, i) => i !== index)
-                localStorage.setItem("expenseColors", JSON.stringify(updatedColors))
+    async function deleteItems(row) {
+        console.log("expense id in jsx: ", row.expense_id)
+        const deletedItem = await deleteExpenses(row.expense_id)
+        console.log("deleted item: ", deletedItem.deleteExpense._id)
 
-                return updatedColors
-            })
+        if (deletedItem) {
+            setData(prev => {
+                const updated = prev.filter(exp => exp._id !== row.expense_id);
+                localStorage.setItem("expenses", JSON.stringify(updated));
+                return updated;
+            });
+
         }
-    }   
+    }
 
     return <div style={{ flex: '50%' }}>
         <TableWrapper>
@@ -52,13 +72,13 @@ export default function ExpenseTable() {
                                 </td>
                             </tr>
                         ) : data.map((row, index) => (
-                            <tr key={index}>
-                                <td>{row.source}</td>
+                            <tr key={row._id || index}>
+                                <td>{row.expense}</td>
                                 <td>
-                                    {row.amount}
+                                    {row.expenseAmount}
                                 </td>
                                 <td style={{ border: 'none' }}>
-                                    <button onClick={() => deleteItems(index)}>Delete</button>
+                                    <button onClick={() => deleteItems(row, index)}>Delete</button>
                                 </td>
                             </tr>
                         ))
@@ -69,10 +89,10 @@ export default function ExpenseTable() {
                         isAdding && (
                             <tr>
                                 <td>
-                                    <input type="text" placeholder="Enter Source" value={newRow.source} onChange={(e) => setNewRow((prev) => ({ ...prev, source: e.target.value }))} onBlur={handleBlur} autoFocus />
+                                    <input type="text" placeholder="Enter Source" value={newRow.expense} onChange={(e) => setNewRow((prev) => ({ ...prev, expense: e.target.value }))} onBlur={handleBlur} autoFocus />
                                 </td>
                                 <td>
-                                    <input type="text" placeholder="Enter Amount" value={newRow.amount} onChange={(e) => setNewRow((prev) => ({ ...prev, amount: e.target.value }))} onBlur={handleBlur} />
+                                    <input type="text" placeholder="Enter Amount" value={newRow.expenseAmount} onChange={(e) => setNewRow((prev) => ({ ...prev, expenseAmount: e.target.value }))} onBlur={handleBlur} />
 
                                 </td>
                             </tr>

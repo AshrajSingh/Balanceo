@@ -5,8 +5,13 @@ import '../styleSheets/statsCard.css'
 import '../styleSheets/dashboard.css'
 import MonthlyExpensesChart from "../wrappers/ExpenseGraph";
 import IncomeGraph from "./incomeGraph.jsx";
+
 // display this page when user is succesfully signed in/loggend in 
 export default function Dashboard() {
+    const user = localStorage.getItem("user")
+    const userOBJ = JSON.parse(user)
+
+    console.log("from dashboard.jsx user: ", userOBJ)
 
     useEffect(() => {
         document.body.style.display = "block"
@@ -19,6 +24,8 @@ export default function Dashboard() {
             document.body.style.color = ""
         }
     }, [])
+  
+
 
     return <div className="dashboard">
         <div style={{ backgroundColor: '#2d2d2d' }}>
