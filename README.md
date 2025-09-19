@@ -37,7 +37,7 @@ It helps users manage their personal finances by **tracking income, expenses, an
 ---
 
 ## 📂 Project Structure  
-
+```
 Balanceo/
 │── backend/ # Node.js + Express + MongoDB backend
 │ ├── middlewares/ # Authentication (JWT) and other middleware
@@ -67,6 +67,7 @@ Balanceo/
 │
 │── .gitignore # Files ignored by Git
 │── README.md # Project documentation
+```
 
 ---
 
