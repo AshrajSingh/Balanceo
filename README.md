@@ -134,10 +134,6 @@ Logging out clears the token and user data from localStorage.
 
 📱 Mobile version (React Native)
 
-📸 Screenshots (Coming Soon)
-
-(Add dashboard, pie chart, and expense table screenshots here)
-
 🧑‍💻 Author
 
 Developed with ❤️ by Ashraj Singh
