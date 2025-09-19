@@ -77,64 +77,48 @@ Balanceo/
 git clone https://github.com/<your-username>/<your-repo>.git
 cd Balanceo
 
-Backend Setup
+###2️⃣Backend Setup
 cd backend
 npm install
 
-Create a .env file inside backend/ and add:
+**Create a .env file inside backend/ and add:**
 MONGO_URI=your-mongodb-connection-url
 JWT_SECRET=your-secret-key
 PORT=5000
 
-Start backend server:
+**Start backend server:**
 npm start
 
-Frontend Setup
+**Frontend Setup**
 cd ../frontend
 npm install
 npm start
 
-▶️ Usage
+### ▶️ Usage
 
-Sign up / Log in with your credentials.
+- Sign up / Log in with your credentials.
+- Access your Dashboard to view:
+- Total Income
+- Total Expenses
+- Balance
+- Income & Expense tables
+- Interactive Pie Chart
+- Add or delete entries → updates instantly & persists in the database.
 
-Access your Dashboard to view:
+### 🔐 Authentication Flow
 
-Total Income
+- On login/signup, the backend issues a JWT token.
+- Token is stored in localStorage and sent with every protected API request.
+- Expenses & income are tied to the logged-in user via their user_Id.
+- Logging out clears the token and user data from localStorage.
 
-Total Expenses
+### 🚀 Future Enhancements
+- 📂 Category-wise expense tracking
+- 📊 Export data (CSV/PDF)
+- 👥 Shared/group expenses
+- 🌙 Dark mode UI
+- 📱 Mobile version (React Native)
+- 🧑‍💻 Author
 
-Balance
-
-Income & Expense tables
-
-Interactive Pie Chart
-
-Add or delete entries → updates instantly & persists in the database.
-
-🔐 Authentication Flow
-
-On login/signup, the backend issues a JWT token.
-
-Token is stored in localStorage and sent with every protected API request.
-
-Expenses & income are tied to the logged-in user via their user_Id.
-
-Logging out clears the token and user data from localStorage.
-
-🚀 Future Enhancements
-
-📂 Category-wise expense tracking
-
-📊 Export data (CSV/PDF)
-
-👥 Shared/group expenses
-
-🌙 Dark mode UI
-
-📱 Mobile version (React Native)
-
-🧑‍💻 Author
-
-Developed with ❤️ by Ashraj Singh
+## Developed with ❤️ by Ashraj Singh
 ---
