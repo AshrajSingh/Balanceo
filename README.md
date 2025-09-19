@@ -77,22 +77,32 @@ Balanceo/
 git clone https://github.com/<your-username>/<your-repo>.git
 cd Balanceo
 
+---
+
 ###2️⃣Backend Setup
 cd backend
 npm install
+
+---
 
 **Create a .env file inside backend/ and add:**
 MONGO_URI=your-mongodb-connection-url
 JWT_SECRET=your-secret-key
 PORT=5000
 
+---
+
 **Start backend server:**
 npm start
+
+---
 
 **Frontend Setup**
 cd ../frontend
 npm install
 npm start
+
+---
 
 ### ▶️ Usage
 
@@ -105,12 +115,15 @@ npm start
 - Interactive Pie Chart
 - Add or delete entries → updates instantly & persists in the database.
 
-### 🔐 Authentication Flow
+---
 
+### 🔐 Authentication Flow
 - On login/signup, the backend issues a JWT token.
 - Token is stored in localStorage and sent with every protected API request.
 - Expenses & income are tied to the logged-in user via their user_Id.
 - Logging out clears the token and user data from localStorage.
+
+---
 
 ### 🚀 Future Enhancements
 - 📂 Category-wise expense tracking
@@ -119,6 +132,8 @@ npm start
 - 🌙 Dark mode UI
 - 📱 Mobile version (React Native)
 - 🧑‍💻 Author
+
+---
 
 ## Developed with ❤️ by Ashraj Singh
 ---
