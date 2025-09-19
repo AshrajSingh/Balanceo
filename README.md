@@ -76,36 +76,43 @@ Balanceo/
 ```bash
 git clone https://github.com/<your-username>/<your-repo>.git
 cd Balanceo
+```
 
 ---
 
 ###2️⃣Backend Setup
+```bash
 cd backend
 npm install
+```
 
 ---
 
 **Create a .env file inside backend/ and add:**
+```bash
 MONGO_URI=your-mongodb-connection-url
 JWT_SECRET=your-secret-key
 PORT=5000
-
+```
 ---
 
 **Start backend server:**
+```bash
 npm start
+```
 
 ---
 
 **Frontend Setup**
+```bash
 cd ../frontend
 npm install
 npm start
+```
 
 ---
 
 ### ▶️ Usage
-
 - Sign up / Log in with your credentials.
 - Access your Dashboard to view:
 - Total Income
