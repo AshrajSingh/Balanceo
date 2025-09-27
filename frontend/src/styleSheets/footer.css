@@ -1,0 +1,124 @@
+.footer-root {
+  background-color: #0c0c0c;
+  color: #e6e6e6;
+}
+
+.footer-top {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 48px;
+  padding: 48px 24px 24px;
+}
+
+.footer-cta {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.footer-title {
+  margin: 0;
+  font-size: 40px;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+
+.footer-button {
+  align-self: flex-start;
+  background: #e01b24;
+  color: #fff;
+  padding: 10px 14px;
+  border-radius: 10px;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.footer-meta {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 24px;
+}
+
+.meta-heading {
+  margin: 0 0 8px 0;
+  color: #a1a1aa;
+  font-weight: 600;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.meta-text { margin: 0; color: #e6e6e6; }
+
+.meta-links { list-style: none; padding: 0; margin: 0; display: grid; gap: 6px; }
+.meta-links a { color: #e6e6e6; text-decoration: none; }
+
+.footer-divider { height: 1px; background: #232323; margin: 24px 0; }
+
+/* Banner inspired by the provided design: huge word with red film overlay */
+.footer-banner {
+  position: relative;
+  overflow: hidden;
+  background: radial-gradient(100% 140% at 0% 0%, rgba(224,27,36,0.25), transparent 60%),
+              linear-gradient(90deg, rgba(224,27,36,0.55), rgba(224,27,36,0.1));
+}
+
+.banner-overlay {
+  position: absolute;
+  inset: 0;
+  background: url('/noise.png');
+  opacity: 0.06;
+  pointer-events: none;
+}
+
+.banner-content {
+  position: relative;
+  padding: 28px 24px 18px;
+}
+
+.banner-word {
+  margin: 0;
+  font-size: clamp(72px, 18vw, 240px);
+  line-height: 0.8;
+  letter-spacing: -0.04em;
+  font-weight: 800;
+  color: rgba(255,255,255,0.08);
+  mix-blend-mode: lighten;
+  text-transform: uppercase;
+}
+
+.banner-notes {
+  position: absolute;
+  bottom: 14px;
+  left: 24px;
+  display: flex;
+  gap: 18px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.banner-notes li {
+  color: #f1f1f1;
+  font-size: 12px;
+  background: rgba(0,0,0,0.35);
+  border: 1px solid rgba(255,255,255,0.08);
+  padding: 6px 10px;
+  border-radius: 999px;
+  backdrop-filter: blur(2px);
+}
+
+.footer-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 24px 24px;
+  color: #a1a1aa;
+  font-size: 12px;
+}
+
+@media (max-width: 860px) {
+  .footer-top { grid-template-columns: 1fr; }
+  .footer-meta { grid-template-columns: 1fr 1fr; }
+}
+
