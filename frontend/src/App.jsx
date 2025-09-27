@@ -8,6 +8,7 @@ import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom'
 import PrivateRoute, { PublicRoute } from './component/PrivateRoute.jsx'
 import { authAtom } from './store/userAtom.jsx'
 import { useEffect } from 'react'
+import Footer from './component/Footer.jsx'
 
 function App() {
   const setAuth = useSetRecoilState(authAtom)
@@ -47,6 +48,7 @@ function App() {
         </Routes>
       </BrowserRouter>
       <Toaster position="top-right" reverseOrder={false} />
+      <Footer />
     </div>
   )
 }
