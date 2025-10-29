@@ -93,7 +93,7 @@ export async function deleteExpenses(expense_id) {
 
     try {
 
-        const confirmed = await fetch(`${apiURL}expensePage/delete/${expense_id}`, {
+        const confirmed = await fetch(`${apiURL}/expensePage/delete/${expense_id}`, {
             method: "DELETE",
             headers: {
                 'Content-Type': 'application/json',
