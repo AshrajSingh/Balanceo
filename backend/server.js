@@ -16,7 +16,7 @@ const __dirname = path.dirname(__filename);
 
 const app = express()
 app.use(express.json())
-app.use(cors());
+app.use(cors(({ origin: 'https://balanceo.onrender.com' })));
 
 app.use('/api', logInRoutes)
 app.use('/api', signInRoutes)
