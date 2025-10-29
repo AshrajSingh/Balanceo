@@ -4,7 +4,7 @@ import expenseChart from "../images/expense-chart.png"
 import incomeChart from "../images/income-chart.png"
 import expenseTable from "../images/expense-table.png"
 import incomeTable from "../images/income-table.png"
-import "../styleSheets/HomePage.css";
+import "../styleSheets/homePage.css";
 import { useRecoilValue } from "recoil";
 import { authAtom } from "../store/userAtom";
 import { useEffect } from "react";

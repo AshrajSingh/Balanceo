@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "../styleSheets/ConfirmBox.css"
+import "../styleSheets/confirmBox.css"
 
 function ConfirmBox({ message, onConfirm }) {
   const [visible, setVisible] = useState(false);

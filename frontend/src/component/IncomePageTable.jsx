@@ -1,7 +1,7 @@
 import { useRecoilState, useRecoilValue } from "recoil"
 import { groupedIncomeState, incomeAtom, isGroupedViewState } from "../store/userAtom"
 import ConfirmBox from "./ConfirmBox"
-import '../styleSheets/IncomePageTable.css'
+import '../styleSheets/incomePageTable.css'
 import { useState } from "react"
 import { deleteIncome } from "../services/authService"
 import toast from "react-hot-toast"

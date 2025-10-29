@@ -1,7 +1,7 @@
 import Graph from "../wrappers/GraphWrapper";
 import Income_Graph from "../wrappers/IncomeGraph.jsx";
 import IncomeTable from "./IncomeTable.jsx";
-import '../styleSheets/tableWrapper.css'
+import '../styleSheets/TableWrapper.css'
 import '../styleSheets/expenseGraph.css'
 
 export default function IncomeGraph() {

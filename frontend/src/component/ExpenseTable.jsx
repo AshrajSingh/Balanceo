@@ -1,6 +1,6 @@
 import TableWrapper from "../wrappers/TableWrapper";
 import '../styleSheets/TableWrapper.css'
-import '../styleSheets/IncomePageTable.css'
+import '../styleSheets/incomePageTable.css'
 import { useRecoilValue } from "recoil";
 import { groupedExpenseState } from "../store/userAtom";
 import { useNavigate } from "react-router-dom";

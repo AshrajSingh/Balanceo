@@ -1,5 +1,5 @@
 import { useRecoilState, useSetRecoilState } from 'recoil'
-import '../styleSheets/LoginPage.css'
+import '../styleSheets/loginPage.css'
 import { authAtom, signUpAtom } from '../store/userAtom'
 import { signInUser } from '../services/authService';
 import toast from 'react-hot-toast';
