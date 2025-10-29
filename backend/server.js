@@ -16,7 +16,7 @@ const __dirname = path.dirname(__filename);
 
 const app = express()
 app.use(express.json())
-app.use(cors(({origin: 'http://localhost:5173'})));
+app.use(cors(({origin: ['http://localhost:5173', 'https://balanceo-fhz1.onrender.com']})));
 
 app.use('/api', logInRoutes)
 app.use('/api', signInRoutes)
