@@ -1,7 +1,8 @@
 import { PieChart, Pie, Tooltip, Cell, ResponsiveContainer } from "recharts";
 import { useRecoilValue } from "recoil";
 import { useEffect, useState } from "react";
-import { incomeAtom } from "../store/userAtom";
+import { groupedIncomeState, incomeAtom } from "../store/userAtom";
+import '../styleSheets/expenseGraph.css'
 
 function generateRandomColor() {
     const hue = Math.floor(Math.random() * 360);
@@ -11,40 +12,41 @@ function generateRandomColor() {
 export default function Income_Graph() {
     const [colors, setColors] = useState({})
     const data = useRecoilValue(incomeAtom)
+    const groupedData = useRecoilValue(groupedIncomeState)
     // localStorage.removeItem("incomeColors")
 
     useEffect(() => {
-        const savedColors = JSON.parse(localStorage.getItem("incomeColors"))
+        const savedColors = JSON.parse(localStorage.getItem("updatedIncomeColors"))
         const updatedColors = { ...savedColors }
 
-        data.map((items) => {
-            if (!updatedColors[items.source]) {
-                updatedColors[items.source] = generateRandomColor();
+        groupedData.map((items) => {
+            if (!updatedColors[items.category]) {
+                updatedColors[items.category] = generateRandomColor();
             }
 
         })
         setColors(updatedColors);
 
 
-        localStorage.setItem("incomeColors", JSON.stringify(updatedColors))
+        localStorage.setItem("updatedIncomeColors", JSON.stringify(updatedColors))
 
-    }, [data])
+    }, [groupedData])
 
     return <div>
-        <ResponsiveContainer width="85%" height={360} style={{ borderRadius: '10px', backgroundColor: '#212020', boxShadow: 'rgba(0, 0, 0, 0.4) 2px 4px 11px' }}>
+        <ResponsiveContainer width="85%" height={290} style={{ borderRadius: '10px', backgroundColor: '#212020', boxShadow: 'rgba(0, 0, 0, 0.4) 2px 4px 11px' }}>
             <p>Income</p>
             <PieChart>
                 <Pie
-                    data={data}
-                    cx="50%"
+                    data={groupedData}
+                    cx="47%"
                     cy="50%"
                     outerRadius={100}
-                    dataKey="amount"
-                    nameKey="source"
+                    dataKey="totalAmount"
+                    nameKey="category"
                     label
                 >
-                    {data.map((entry, index) => (
-                        <Cell key={index} fill={colors[entry.source]} />
+                    {groupedData.map((entry, index) => (
+                        <Cell key={index} fill={colors[entry.category]} />
                     ))}
                 </Pie>
                 <Tooltip />

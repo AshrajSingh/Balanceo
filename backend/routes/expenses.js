@@ -6,7 +6,7 @@ const app = express()
 app.use(express.json())
 const router = express.Router()
 
-router.get("/dashboard", userAuthentication, async (req, res) => {
+router.get("/expensePage", userAuthentication, async (req, res) => {
 
     try {
         const existingExpenses = await expenseModel.find({ user_Id: req.user.user_id })
@@ -18,12 +18,13 @@ router.get("/dashboard", userAuthentication, async (req, res) => {
 })
 
 
-router.post("/dashboard/add", userAuthentication, async function (req, res) {
+router.post("/expensePage/add", userAuthentication, async function (req, res) {
     try {
-        const { expense, expenseAmount } = req.body;
-        
+        const {category, expense, expenseAmount } = req.body;
+
         const newExpense = new expenseModel({
             user_Id: req.user.user_id,
+            category: category,
             expense: expense,
             expenseAmount: Number(expenseAmount)
         })
@@ -33,12 +34,13 @@ router.post("/dashboard/add", userAuthentication, async function (req, res) {
         res.status(200).json(savedExpenses)
     }
     catch (error) {
-        throw error
+        console.error("Error saving expense: ", error)
+        res.status(500).json({ msg: error.message })
     }
 })
 
 
-router.delete("/dashboard/delete/:expense_id", userAuthentication, async function (req, res) {
+router.delete("/expensePage/delete/:expense_id", userAuthentication, async function (req, res) {
     const { expense_id } = req.params
     console.log("expense_id in router: ", expense_id)
 
@@ -54,6 +56,7 @@ router.delete("/dashboard/delete/:expense_id", userAuthentication, async functio
         }
 
         res.status(200).json({ message: 'Expense Deleted', deleteExpense })
+
     } catch (error) {
         console.error(error)
     }

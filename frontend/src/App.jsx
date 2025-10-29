@@ -8,6 +8,9 @@ import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom'
 import PrivateRoute, { PublicRoute } from './component/PrivateRoute.jsx'
 import { authAtom } from './store/userAtom.jsx'
 import { useEffect } from 'react'
+import HomePage from './component/HomePage.jsx'
+import IncomePage from './component/IncomePage.jsx'
+import ExpensePage from './component/ExpensePage.jsx'
 
 function App() {
   const setAuth = useSetRecoilState(authAtom)
@@ -15,12 +18,14 @@ function App() {
   useEffect(() => {
     const savedUser = localStorage.getItem("user")
     console.log("saved User: ", savedUser)
+
     if (savedUser) {
-      setAuth(JSON.parse(savedUser));
+      setAuth({ isLoggedIn: true, isChecked: true, user: JSON.parse(savedUser) });
     }
-    else{
+    else {
       setAuth({
         isLoggedIn: false,
+        isChecked: true,
         user: null
       })
     }
@@ -31,8 +36,12 @@ function App() {
     <div>
       <BrowserRouter>
         <Routes>
-          {/* default route */}
-          <Route path="/" element={<Navigate to="/login" />} />
+          {/* default route - allow access even when logged in */}
+          <Route path="/" element={
+            <PublicRoute allowWhenLoggedIn={true}>
+              <HomePage />
+            </PublicRoute>
+          } />
 
           <Route path="/login" element={
             <PublicRoute>
@@ -44,6 +53,10 @@ function App() {
               <Dashboard />
             </PrivateRoute>
           } />
+
+          <Route path='/incomePage' element={<IncomePage />} />
+          <Route path='/expensePage' element={<ExpensePage />} />
+          
         </Routes>
       </BrowserRouter>
       <Toaster position="top-right" reverseOrder={false} />

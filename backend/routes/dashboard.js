@@ -6,7 +6,7 @@ app.use(express.json())
 const router = express.Router()
 
 //GET ALL EXPENSES
-router.get("/dashboard/:userId", async function (req, res) {
+router.get("/expensePage", async function (req, res) {
     try {
         console.log("log from dashboard.js")
         userData = localStorage.getItem("user")

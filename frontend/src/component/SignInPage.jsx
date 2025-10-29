@@ -51,7 +51,7 @@ export default function SignInPage({ onBack }) {
                 token: response.token
             }))
 
-            setAuth({isLoggedIn: true, user: signIn.email})
+            setAuth({isLoggedIn: true, isChecked: true, user: signIn.email})
             navigate("/dashboard")
             
             toast.success(response.message || 'User signed in successfully');
@@ -62,7 +62,7 @@ export default function SignInPage({ onBack }) {
     }
 
     return <div>
-        <div className="signin-box" style={{ 'borderRadius': '0px 100px 0px 0px' }}>
+        <div className="signin-box">
             <h2 className="login-title">Sign In</h2>
 
             <input className="login-input" type="text" placeholder="Username" onChange={(e) => { handleInputChange('username', e.target.value) }} />

@@ -15,6 +15,21 @@
 @media screen and (max-width: 480px) {
     .amount-wrapper{
         display: block;
-        padding: 0 3rem 6.25rem 3rem;
+        padding: 0 3rem 0rem 3rem;
+    }
+    .statsGrid{
+        margin: 1.5rem 0rem;
+    }
+}
+@media screen and (min-width: 481px) and (max-width: 768px){
+    .amount-wrapper{
+        padding: 3rem 1.25rem 3rem 1.25rem;
+        /* width: fit-content; */
+    }
+}
+
+@media (min-width: 769px) and (max-width: 1024px){
+    .amount-wrapper{
+        padding: 2rem;
     }
 }

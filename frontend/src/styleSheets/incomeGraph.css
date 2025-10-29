@@ -1,0 +1,30 @@
+@media screen and (max-width: 480px) {
+    .expenseGraph2 {
+        display: block;
+        margin: 3rem 1rem;
+    }
+
+    ;
+
+    .expenseGraph {
+        flex-direction: row;
+        margin: 3rem 0rem 2rem 0rem;
+    }
+
+    .recharts-responsive-container {
+        width: 100% !important;
+        height: 100vw ;
+    }
+
+    .recharts-wrapper {
+        width: 100vw ;
+        height: 100vw ;
+    }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+    .recharts-responsive-container {
+        width: 90% !important;
+        height: 60vh ;
+    }
+}

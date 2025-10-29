@@ -1,11 +1,11 @@
-import '../styleSheets/LoginPage.css' // CSS in the next section
-import SigninPage from '../component/SignInPage'; // Assuming you have a SigninPage component
-import { useRef, useState } from 'react';
+import '../styleSheets/LoginPage.css'
+import SigninPage from '../component/SignInPage'; 
+import { useEffect, useRef, useState } from 'react';
 import { useRecoilState, useSetRecoilState } from 'recoil';
 import { authAtom, logInAtom } from '../store/userAtom';
 import toast from 'react-hot-toast';
 import { logInUser } from '../services/authService';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 
 export default function LoginPage() {
@@ -44,13 +44,13 @@ export default function LoginPage() {
             console.log("Response: ", response)
 
             localStorage.setItem("user", JSON.stringify({
-                isLoggedIn: true,
                 user_id: response.user_id,
                 user: userData.email,
                 token: response.token
             }))
             
-            setAuth({isLoggedIn: true, user: userData.email})
+            setAuth({isLoggedIn: true, isChecked: true ,user: userData.email})
+            localStorage.setItem("auth", JSON.stringify({isLoggedIn:true, user: userData.email}))
 
             navigate("/dashboard")
 
@@ -63,6 +63,7 @@ export default function LoginPage() {
     }
 
     return (
+        <>
         <div className="flip-card">
             <div className={`flip-card-inner${isFlipped ? " flipped" : ""}`}>
                 <div className="flip-card-front">
@@ -75,30 +76,29 @@ export default function LoginPage() {
                             <input className="login-input" type="password" placeholder="Password" onChange={(e) => handleInputChange(e, passwordRef)} />
 
                             <div className="login-options">
-                                <label className="remember-me">
+                                {/* <label className="remember-me">
                                     <input type="checkbox" /> Remember me
-                                </label>
-                                <button className="forgot-password">Forgot Password</button>
+                                </label> */}
+                                <button className="forgot-password">Forgot Password ?</button>
                             </div>
 
                             <button className="login-button" onClick={loginUser}>LOGIN</button>
 
                             <p className="register-text">
-                                Don't have an account? <button className="register-link" onClick={() => setIsFlipped(true)}>Sign up</button>
+                                Don't have an account ? <button className="register-link" onClick={() => setIsFlipped(true)}>Sign up</button>
                             </p>
                         </div>
                     </div>
                 </div>
 
                 <div className="flip-card-back">
-                    <SigninPage onBack={() => setIsFlipped(false)} /> {/* Pass a callback to go back to login */}
-                    {/* The SigninPage component can be imported and used here */}
-                    {/* You can also add a button to go back to the login page */}
+                    <SigninPage onBack={() => setIsFlipped(false)} />
                 </div>
 
             </div>
         </div>
-
+       
+    </>
     );
 }
    

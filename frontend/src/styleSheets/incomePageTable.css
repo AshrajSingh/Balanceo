@@ -1,0 +1,84 @@
+.incomeTable {
+    box-shadow: 0 0.1875rem 0.4375rem rgba(0, 0, 0, 0.4);
+    border-radius: 0.625rem;
+    background-color: #212020;
+    padding: 2rem 1.25rem;
+    width: 99%;
+    overflow-x: auto;
+    color: #a6c4d4;
+    /* display: flex; */
+    /* flex-direction: column; */
+}
+
+.incomeTable table {
+    padding: 1.25rem;
+    /* 20px */
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 0.4375rem;
+    /* 7px */
+    min-width: 30rem;
+    /* ensures table doesn’t shrink too much */
+}
+
+.incomeTable table tbody tr td {
+    border: 0.0625rem solid rgb(197, 194, 194);
+    padding: 1rem;
+    /* 7px */
+    font-weight: 200;
+    word-wrap: break-word;
+    color: rgb(197, 194, 194);
+}
+
+.incomeTable button {
+    background: rgba(56, 55, 55, 0.373);
+    color: #a6c4d4;
+    padding: 0.3rem;
+    /* 3px */
+    border: none;
+    border-radius: 0.375rem;
+    /* 6px */
+    /* margin-left: auto; */
+    align-items: end;
+    cursor: pointer;
+    transition: background 0.3s ease;
+    /* float: right; */
+}
+
+.incomeTable button:hover {
+    box-shadow: 0 0 0.9375rem #3a3b3c, 0 0 1.875rem #131313;
+    background: #2850cc;
+    /* 15px, 30px */
+}
+
+.incomeDate {
+    border: 0.0625rem solid rgb(197, 194, 194);
+    padding: 1rem;
+    /* 7px */
+    font-weight: 200;
+    word-wrap: break-word;
+    color: rgb(197, 194, 194);
+}
+
+.view-toggle-btn {
+    float: right;
+    padding: 0.4rem !important;
+}
+
+.view-toggle-btn:hover {
+    background: #2850cc;
+    box-shadow: 0 0 0.9375rem #3a3b3c, 0 0 1.875rem #131313;
+}
+
+@media screen and (max-width: 480px){
+    .incomeTable{
+        width: 90%;
+    }
+}
+
+@media (max-width: 768px){
+    .incomeTable{
+        width: 100%;
+        padding: 2rem 0;
+    }
+}

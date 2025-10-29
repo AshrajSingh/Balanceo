@@ -1,10 +1,82 @@
 .expenseGraph {
-    margin: auto;
-    flex: 1 1 50%; /* flexible, responsive half-width */
+    /* margin: 3rem 0 3rem 0rem; */
+    flex: 1 1 50%;
+
+}
+
+.expenseGraph2 {
+    margin: 3rem 7.5rem;
+    display: flex;
+
 }
 
 .expenseGraph p {
     margin: auto 1.75rem;
     padding: 0;
-    display: none; /* replaces width/height 0 */
+    display: none;
+    /* replaces width/height 0 */
+}
+
+@media screen and (max-width: 480px) {
+    .expenseGraph2 {
+        display: block;
+        margin: 3rem 1rem;
+    }
+
+    .expenseGraph {
+        margin: 3rem 0rem 2rem 0rem;
+        flex-direction: row;
+    }
+
+    .recharts-responsive-container {
+        width: 100% !important;
+        height: 100vw ;
+    }
+ 
+    .recharts-wrapper {
+        width: 100vw ;
+        height: 100vw ;
+    }
+}
+
+@media screen and (min-width: 481px) and (max-width: 768px) {
+    .expenseGraph2 {
+        display: block;
+        margin: 0 2.5rem;
+
+    }
+
+    .expenseGraph {
+        margin: 6rem auto;
+    }
+
+    .recharts-responsive-container {
+        width: 100% !important;
+    }
+    /* .recharts-wrapper{
+        width: 71vw !important;
+    } */
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+    .expenseGraph2 {
+        margin: 2rem;
+        gap: 1rem;
+        flex-direction: row;
+    }
+
+    .expenseGraph {
+        flex: 50%;
+    }
+
+    .recharts-responsive-container {
+        width: 100% !important;
+        height: 53vh ;
+        /* margin-bottom: 2rem; */
+    }
+
+    .recharts-wrapper {
+        width: 50vw !important;
+        height: 54vh ;
+    }
 }

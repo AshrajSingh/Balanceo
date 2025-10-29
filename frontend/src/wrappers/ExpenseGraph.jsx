@@ -6,7 +6,7 @@ import ExpenseTable from '../component/ExpenseTable';
 
 export default function MonthlyExpensesChart() {
   return (
-    <div style={{display: 'flex', margin:'auto 120px'}}>
+    <div className='expenseGraph2' >
       <Graph>
         <TotalExpense />
       </Graph>

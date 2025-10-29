@@ -1,6 +1,6 @@
 import { PieChart, Pie, Tooltip, Cell, ResponsiveContainer } from 'recharts';
 import { useRecoilValue } from 'recoil';
-import { expenseAtom } from '../store/userAtom';
+import { expenseAtom, groupedExpenseState } from '../store/userAtom';
 import { useEffect, useState } from 'react';
 
     function generateRandomColor() {
@@ -11,39 +11,40 @@ import { useEffect, useState } from 'react';
 export default function TotalExpense() {
     const data = useRecoilValue(expenseAtom)
     const [colors, setColors] = useState({})
+    const groupedExpenseData = useRecoilValue(groupedExpenseState)
     // localStorage.removeItem("expenseColors") 
 
     useEffect(() => {
-        const savedColors = JSON.parse(localStorage.getItem("expenseColors"))
+        const savedColors = JSON.parse(localStorage.getItem("groupedExpenseColors"))
         const updatedColors = { ...savedColors }
 
-        data.map((items) => {
-            if (!updatedColors[items.expense]) {
-                updatedColors[items.expense] = generateRandomColor();
+        groupedExpenseData.map((items) => {
+            if (!updatedColors[items.category]) {
+                updatedColors[items.category] = generateRandomColor();
             }
         })
         setColors(updatedColors);
 
-        localStorage.setItem("expenseColors", JSON.stringify(updatedColors))
+        localStorage.setItem("groupedExpenseColors", JSON.stringify(updatedColors))
 
-    }, [data])
+    }, [groupedExpenseData])
 
 
     return <div>
-        <ResponsiveContainer width="85%" height={362} style={{ borderRadius: '10px', backgroundColor: '#212020', boxShadow: 'rgba(0, 0, 0, 0.4) 2px 4px 11px' }}>
+        <ResponsiveContainer width="91%" height={362} style={{ borderRadius: '10px', backgroundColor: '#212020', boxShadow: 'rgba(0, 0, 0, 0.4) 2px 4px 11px' }}>
             <p>Expense</p>
             <PieChart>
                 <Pie
-                    data={data}
-                    cx="50%"
+                    data={groupedExpenseData}
+                    cx="42%"
                     cy="50%"
                     outerRadius={100}
-                    dataKey="expenseAmount"
-                    nameKey="expense"
+                    dataKey="totalAmount"
+                    nameKey="category"
                     label
                 >
-                    {data.map((entry, index) => (
-                        <Cell key={index} fill={colors[entry.expense] || "#8884d8"} />
+                    {groupedExpenseData.map((entry, index) => (
+                        <Cell key={index} fill={colors[entry.category]} />
                     ))}
                 </Pie>
                 <Tooltip />

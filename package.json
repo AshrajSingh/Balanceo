@@ -1,0 +1,22 @@
+{
+  "name": "settle_up",
+  "version": "1.0.0",
+  "description": "Balanceo is a **full-stack expense tracker web application** built with the **MERN stack** (MongoDB, Express.js, React, Node.js).  \r It helps users manage their personal finances by **tracking income, expenses, and balance** with real-time updates and visualizations.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AshrajSingh/Balanceo.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/AshrajSingh/Balanceo/issues"
+  },
+  "homepage": "https://github.com/AshrajSingh/Balanceo#readme"
+}

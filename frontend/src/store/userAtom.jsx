@@ -1,6 +1,4 @@
-import { atom } from "recoil";
-import { expenseModel } from "../../../backend/models/expense";
-
+import { atom, selector } from "recoil";
 
 export const signUpAtom = atom({
     key: 'signUpAtom',
@@ -22,6 +20,7 @@ export const authAtom = atom({
     key: 'authAtom',
     default: {
         isLoggedIn: false,
+        isChecked: false,
         user: null
     }
 })
@@ -37,13 +36,13 @@ export const expenseAtom = atom({
             const token = user.token
             console.log("token: ", token)
 
-            // const existingUser = expenseModel.find({user_Id: user.user_id})
+            if(!token) return
 
             if (saved != null) {
                 setSelf(JSON.parse(saved))
             }
 
-            fetch("http://localhost:5000/api/dashboard",{
+            fetch("http://localhost:5000/api/expensePage", {
                 method: "GET",
                 headers: {
                     "Content-Type": "application/json",
@@ -52,10 +51,10 @@ export const expenseAtom = atom({
             })
                 .then(res => res.json())
                 .then(data => {
-                    console.log("fetched from backend: ", data)
-                    // if(user.user_id == ){}
                     const realData = data.map(items => ({
-                        expense_id: items._id,
+                        _id: items._id,
+                        category: items.category,
+                        date: items.date,
                         expense: items.expense,
                         expenseAmount: Number(items.expenseAmount)
                     }))
@@ -74,14 +73,89 @@ export const incomeAtom = atom({
     default: [],
     effects: [
         ({ setSelf, onSet }) => {
-            const saved = localStorage.getItem("income")
+            const saved = localStorage.getItem("incomes")
+            const users = localStorage.getItem("user")
+            const user = JSON.parse(users)
+            const token = user.token
+            console.log("token from income: ", token)
+
+            if(!token) return
 
             if (saved != null) {
                 setSelf(JSON.parse(saved))
             }
 
-            onSet((newValue) => localStorage.setItem("income", JSON.stringify(newValue)))
+            fetch("http://localhost:5000/api/incomePage/income", {
+                method: "GET",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": `Bearer ${token}`
+                }
+            }).then(res => res.json())
+                .then(data => {
+                    const realData = data.map(items => ({
+                        _id: items._id,
+                        category: items.category,
+                        date: items.date,
+                        income: items.income,
+                        incomeAmount: Number(items.incomeAmount)
+                    }))
+                    setSelf(realData)
+                    localStorage.setItem("incomes", JSON.stringify(realData))
+                }).catch((err) => console.error("Failed to fetch income: ", err))
+
+            onSet((newValue) => localStorage.setItem("incomes", JSON.stringify(newValue)))
         }
     ]
 })
+export const groupedIncomeState = selector({
+    key: 'groupedIncomeState',
+    get: ({get}) => {
+        const data = get(incomeAtom);
+        
+        const grouped_Data = data.reduce((groups, item) => {
+            const category = item.category;
+            if (!groups[category]) {
+                groups[category] = {
+                    category: category,
+                    totalAmount: 0,
+                    items: []
+                };
+            }
+            groups[category].items.push(item);
+            groups[category].totalAmount += Number(item.incomeAmount);
+            return groups;
+        }, {});
 
+        // Convert the object to array for easier mapping
+        return Object.values(grouped_Data);
+    }
+});
+export const groupedExpenseState = selector({
+    key: 'groupedExpenseState',
+    get: ({get}) => {
+        const data = get(expenseAtom);
+        
+        const grouped_Data = data.reduce((groups, item) => {
+            const category = item.category;
+            if (!groups[category]) {
+                groups[category] = {
+                    category: category,
+                    totalAmount: 0,
+                    items: []
+                };
+            }
+            groups[category].items.push(item);
+            groups[category].totalAmount += Number(item.expenseAmount);
+            return groups;
+        }, {});
+
+        // Convert the object to array for easier mapping
+        return Object.values(grouped_Data);
+    }
+});
+
+export const isGroupedViewState = atom({
+    key: 'isGroupedViewState',
+    default: false
+});
