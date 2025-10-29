@@ -1,4 +1,5 @@
 import { atom, selector } from "recoil";
+const apiURL = import.meta.env.VITE_API_URL
 
 export const signUpAtom = atom({
     key: 'signUpAtom',
@@ -42,7 +43,7 @@ export const expenseAtom = atom({
                 setSelf(JSON.parse(saved))
             }
 
-            fetch("http://localhost:5000/api/expensePage", {
+            fetch(`${apiURL}/expensePage`, {
                 method: "GET",
                 headers: {
                     "Content-Type": "application/json",
@@ -85,7 +86,7 @@ export const incomeAtom = atom({
                 setSelf(JSON.parse(saved))
             }
 
-            fetch("http://localhost:5000/api/incomePage/income", {
+            fetch(`${apiURL}/incomePage/income`, {
                 method: "GET",
                 headers: {
                     "Content-Type": "application/json",
