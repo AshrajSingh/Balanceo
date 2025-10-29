@@ -1,4 +1,4 @@
-import '../styleSheets/LoginPage.css'
+import '../styleSheets/loginPage.css'
 import SigninPage from '../component/SignInPage'; 
 import { useEffect, useRef, useState } from 'react';
 import { useRecoilState, useSetRecoilState } from 'recoil';
