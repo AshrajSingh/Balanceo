@@ -20,7 +20,6 @@ app.use(cors(({origin: ['http://localhost:5173', 'https://balanceo-fhz1.onrender
 
 app.use('/api', logInRoutes)
 app.use('/api', signInRoutes)
-// app.use('/api', dashboardRoutes)
 app.use('/api', expensesRoutes)
 app.use('/api', incomeRoutes)
 

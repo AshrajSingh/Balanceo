@@ -37,11 +37,11 @@ export const expenseAtom = atom({
             const token = user.token
             console.log("token: ", token)
 
-            if(!token) return
+            // if(!token) return
 
-            if (saved != null) {
-                setSelf(JSON.parse(saved))
-            }
+            // if (saved != null) {
+            //     setSelf(JSON.parse(saved))
+            // }
 
             fetch(`${apiURL}/expensePage`, {
                 method: "GET",
@@ -80,11 +80,11 @@ export const incomeAtom = atom({
             const token = user.token
             console.log("token from income: ", token)
 
-            if(!token) return
+            // if(!token) return
 
-            if (saved != null) {
-                setSelf(JSON.parse(saved))
-            }
+            // if (saved != null) {
+            //     setSelf(JSON.parse(saved))
+            // }
 
             fetch(`${apiURL}/incomePage/income`, {
                 method: "GET",

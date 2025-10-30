@@ -10,10 +10,14 @@ import { groupedIncomeState, incomeAtom, isGroupedViewState } from "../store/use
 import { Link, useNavigate } from "react-router-dom";
 import { useResetData } from "../hooks/logoutHook";
 import "../styleSheets/homePage.css"
+import SignOutConfirm from "./signOutConfirm";
+import { useTotalIncome } from "../hooks/totalIncomeHook";
 
 const IncomePage = () => {
   const [data, setData] = useRecoilState(incomeAtom)
   const [open, setOpen] = useState(false);
+  const [openSignOut, setOpenSignOut] = useState(true)
+
   const [isGroupedView, setIsGroupedView] = useRecoilState(isGroupedViewState)
   const groupedIncomeData = useRecoilValue(groupedIncomeState);
   const navigate = useNavigate()
@@ -25,7 +29,7 @@ const IncomePage = () => {
   const userData = JSON.parse(localStorage.getItem("user"))
   const user_id = userData.user_id
 
-  const total_incomes = JSON.parse(localStorage.getItem("total_income"))
+  const total_incomes = useTotalIncome();
   console.log("Income data: ", data)
 
 
@@ -39,16 +43,21 @@ const IncomePage = () => {
 
   async function saveIncome() {
     setOpen(false)
+
+    const category = categoryRef.current?.trim().charAt(0).toUpperCase() + categoryRef.current?.trim().slice(1).toLowerCase();
+    const income = incomeRef.current?.trim().charAt(0).toUpperCase() + incomeRef.current?.trim().slice(1).toLowerCase();
+    const incomeAmount = incomeAmountRef.current?.trim();
+
     //checking whether all fields are filled
-    if (!categoryRef.current || !incomeRef.current || !incomeAmountRef.current) {
+    if (!category || !income || !incomeAmount) {
       toast.error("Please fill all fields")
     }
 
     const payload = {
       user_id: user_id,
-      category: categoryRef.current,
-      income: incomeRef.current,
-      incomeAmount: Number(incomeAmountRef.current)
+      category: category,
+      income: income,
+      incomeAmount: Number(incomeAmount)
     }
 
     console.log("Payload in incomeTable.jsx: ", payload)
@@ -62,18 +71,27 @@ const IncomePage = () => {
 
   }
 
+  function handleCancel() {
+    setOpenSignOut(false)
+  }
+
   function handleLogout() {
-    if (resetData) {
-      resetData();
-      navigate("/", { replace: true })
-    }
+    setOpenSignOut(false)
+    resetData();
+    navigate("/", { replace: true });
+    toast.success("Logout successful!")
   }
 
   return (
     <div className={"container"}>
       <header className={"header"}>
-        <span className={"home-logo"}>BALANCEO</span>
-        <button className={"signOut"} onClick={handleLogout}>Sign Out</button>
+        <span className={"home-logo"} onClick={() => navigate("/")}>BALANCEO</span>
+        <SignOutConfirm
+          open={openSignOut}
+          message={"Are you sure you want to sign out?"}
+          onConfirm={() => handleLogout()}
+          onCancel={handleCancel}
+        />
       </header>
       <main>
         <section className={"section"}>
@@ -213,7 +231,7 @@ const IncomePage = () => {
           <div className="contact">
             <h4>Contact Us</h4>
             <p>Address: <a href="">Chhattissgarh, India</a></p>
-            <p>Email: <a href="mailto:support.balanceo@gmail.com">support.balanceo@gmail.com</a> </p>
+            <p>Email: <a href="mailto:support.balanceo@gmail.com">balanceo.services@gmail.com</a> </p>
             <span style={{ display: 'block', marginTop: '8rem' }}>Register For Free
               <Link to="/login" className="home-getstarted">
                 Get Started

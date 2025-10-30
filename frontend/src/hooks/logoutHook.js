@@ -7,21 +7,19 @@ export function useResetData() {
     const resetExpense = useResetRecoilState(expenseAtom)
 
     const handleLogout = () => {
-        const confirmLogout = window.confirm("Are you sure you want to log out?")
 
-        if (confirmLogout) {
-            //clearing data from local storage and recoil state
-            localStorage.clear();
-            
-            resetExpense();
-            resetIncome();
-            
-            setAuth({
-                isLoggedIn: false,
-                isChecked: true,
-                user: null
-            })
-        }
+        //clearing data from local storage and recoil state
+        localStorage.clear();
+
+        resetExpense();
+        resetIncome();
+
+        setAuth({
+            isLoggedIn: false,
+            isChecked: true,
+            user: null
+        })
+
     }
 
     return handleLogout;

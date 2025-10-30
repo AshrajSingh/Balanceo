@@ -161,7 +161,7 @@ export default function HomePage() {
           <div className="contact">
             <h4>Contact Us</h4>
             <p>Address: <a href="">Chhattissgarh, India</a></p>
-            <p>Email: <a href="mailto:support.balanceo@gmail.com">support.balanceo@gmail.com</a> </p>
+            <p>Email: <a href="mailto:support.balanceo@gmail.com">balanceo.services@gmail.com</a> </p>
             <span style={{ display: 'block', marginTop: '8rem' }}>Register For Free
               <Link to="/login" className="home-getstarted">
                 Get Started

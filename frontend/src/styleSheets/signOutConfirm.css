@@ -1,0 +1,75 @@
+.confirm-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.confirm-box {
+    background-color: #1e1e1e;
+    color: #f0f0f0;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+    text-align: center;
+    max-width: 400px;
+    width: 90%;
+}
+
+.confirm-box h3 {
+    margin-top: 0;
+    font-size: 22px;
+    margin-bottom: 15px;
+}
+
+.confirm-box p {
+    font-size: 16px;
+    margin-bottom: 25px;
+    color: #d0d0d0;
+}
+
+.confirm-buttons {
+    display: flex;
+    gap: 15px;
+    justify-content: space-around;
+}
+
+.btn-cancel,
+.btn-confirm {
+    padding: 10px 25px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: all 0.3s ease;
+}
+
+.btn-cancel {
+    background-color: #444;
+    color: #fff;
+}
+
+.btn-cancel:hover {
+    background-color: #555;
+}
+
+.btn-confirm {
+    background-color: #e74c3c;
+    color: #fff;
+}
+
+.btn-confirm:hover {
+    background-color: #c0392b;
+}
+
+@media screen and (max-width: 480px) {
+    .confirm-box {
+        width: 75%;
+    }
+}

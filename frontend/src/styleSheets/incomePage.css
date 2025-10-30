@@ -307,72 +307,89 @@
 
 
 @media screen and (max-width: 480px) {
-  .header{
+  .header {
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 1rem 1rem
   }
-  .section{
+
+  .section {
     display: block;
     gap: 2rem;
     margin: 4rem 0;
   }
-  .subSection{
+
+  .subSection {
     flex: 50%;
     text-align: center;
     margin-left: 0rem;
     max-width: -webkit-fill-available;
   }
-  .title{
+
+  .title {
     padding-left: 1.5rem;
   }
-  .walletImg{
+
+  .walletImg {
     object-fit: contain;
   }
-  .incomeSummary, .expenseSummary{
+
+  .incomeSummary,
+  .expenseSummary {
     margin-right: 0;
   }
+
   /* .incomeGraph{
     display: contents;
   } */
-  .expenseItem, .incomeItem{
+  .expenseItem,
+  .incomeItem {
     padding: 1rem;
   }
-  .dialog{
+
+  .dialog {
     margin: 0 1rem;
   }
 }
 
-@media (max-width: 768px){
-  .section{
+@media (max-width: 768px) {
+  .section {
     gap: 0;
     display: block;
   }
-  .incomeGraph{
+
+  .incomeGraph {
     margin: 3rem 1rem;
   }
-  .subSection{
-    margin: 0  1rem;
+
+  .subSection {
+    margin: 0 1rem;
   }
-  .incomeItem, .expenseItem{
+
+  .incomeItem,
+  .expenseItem {
     padding: 1rem;
   }
-  .dialog{
+
+  .dialog {
     margin: 0 1rem;
   }
 }
 
-@media screen and (min-width: 769px) and (max-width: 1024px){
-  .section{
+@media screen and (min-width: 769px) and (max-width: 1024px) {
+  .section {
     gap: 0;
     margin: 1rem 2rem;
   }
-  .subSection{
+
+  .subSection {
     margin: 0;
 
   }
-  .incomeItem, .expenseItem{
+
+  .incomeItem,
+  .expenseItem {
     margin-right: 2rem;
   }
-} 
+}

@@ -2,17 +2,20 @@ import { useEffect, useRef, useState } from "react";
 import walletImg from "../images/walletImg.png";
 import { CartesianGrid, Line, LineChart, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
 import toast from "react-hot-toast";
-import { setUserdata } from "../services/authService"; 
+import { setUserdata } from "../services/authService";
 import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
-import { authAtom, expenseAtom, groupedExpenseState, isGroupedViewState } from "../store/userAtom"; 
+import { authAtom, expenseAtom, groupedExpenseState, isGroupedViewState } from "../store/userAtom";
 import { Link, useNavigate } from "react-router-dom";
 import { useResetData } from "../hooks/logoutHook";
 import "../styleSheets/homePage.css"
 import { ExpensePageTable } from "./ExpensePageTable";
+import SignOutConfirm from "./signOutConfirm";
+import { useTotalExpense } from "../hooks/totalExpenseHook";
 
 const ExpensePage = () => {
   const [data, setData] = useRecoilState(expenseAtom);
   const [open, setOpen] = useState(false);
+  const [openSignOut, setOpenSignOut] = useState(true)
   const [isGroupedView, setIsGroupedView] = useRecoilState(isGroupedViewState);
   const groupedExpenseData = useRecoilValue(groupedExpenseState);
   const setAuth = useSetRecoilState(authAtom);
@@ -23,7 +26,7 @@ const ExpensePage = () => {
   const resetData = useResetData();
   const userData = JSON.parse(localStorage.getItem("user"));
   const user_id = userData.user_id;
-  const total_expenses = JSON.parse(localStorage.getItem("total_expense"));
+  const total_expenses = useTotalExpense();
 
   useEffect(() => {
     document.body.style.display = "block";
@@ -38,13 +41,13 @@ const ExpensePage = () => {
     try {
       setOpen(false);
 
-      // Trim the values and store them
-      const category = categoryRef.current?.trim();
-      const expense = expenseRef.current?.trim();
-      const amount = expenseAmountRef.current?.trim();
+      // Trim the values and set first letter to upercase even if the user typed it lowercase
+      const category = categoryRef.current?.trim().charAt(0).toUpperCase() + categoryRef.current?.trim().slice(1).toLowerCase();
+      const expense = expenseRef.current?.trim().charAt(0).toUpperCase() + expenseRef.current?.trim().slice(1).toLowerCase();
+      const expenseAmount = expenseAmountRef.current?.trim();
 
       // Check if any field is empty after trimming
-      if (!category || !expense || !amount) {
+      if (!category || !expense || !expenseAmount) {
         toast.error("Please fill all fields");
         return; // Add return to prevent further execution
       }
@@ -53,7 +56,7 @@ const ExpensePage = () => {
         user_id: user_id,
         category: category,
         expense: expense,
-        expenseAmount: Number(amount),
+        expenseAmount: Number(expenseAmount),
       };
       console.log("Payload in expenseTable.jsx: ", payload);
       const response = await setUserdata(payload);
@@ -68,18 +71,27 @@ const ExpensePage = () => {
 
   }
 
+  function handleCancel(){
+    setOpenSignOut(false)
+  }
+
   function handleLogout() {
-    if (resetData) {
+      setOpenSignOut(false)
       resetData();
       navigate("/", { replace: true });
-    }
+      toast.success("Logout successful!")
   }
 
   return (
     <div className={"container"}>
       <header className={"header"}>
-        <span className={"home-logo"}>BALANCEO</span>
-        <button className={"signOut"} onClick={handleLogout}>Sign Out</button>
+        <span className={"home-logo"} onClick={() => navigate("/")}>BALANCEO</span>
+        <SignOutConfirm
+          open={openSignOut}
+          message={"Are you sure you want to sign out?"}
+          onConfirm={() => handleLogout()}
+          onCancel={handleCancel}
+        />
       </header>
       <main>
         <section className={"section"}>
@@ -157,11 +169,11 @@ const ExpensePage = () => {
 
         <section className={"expenseListSection"}>
           <div className={"expenseItem"}>
-          <h2 className={"expenseListTitle"}>Expense List</h2>
+            <h2 className={"expenseListTitle"}>Expense List</h2>
             <ExpensePageTable />
           </div>
         </section>
-        
+
         <div>
           {open && (
             <div className={"overlay"}>
@@ -201,29 +213,29 @@ const ExpensePage = () => {
           <div className={"navigations"}>
             <h4>Navigation Links</h4>
             <li>
-              <span onClick={() => navigate("/", {replace: true})}>Home</span>
+              <span onClick={() => navigate("/", { replace: true })}>Home</span>
             </li>
 
             <li>
-              <span onClick={() => navigate("/dashboard", {replace: true})}>Dashboard</span>
+              <span onClick={() => navigate("/dashboard", { replace: true })}>Dashboard</span>
             </li>
 
             <li>
-              <span onClick={() => navigate("/incomePage", {replace: true})}>Incomes</span>
+              <span onClick={() => navigate("/incomePage", { replace: true })}>Incomes</span>
             </li>
 
             <li>
-              <span onClick={() => navigate("/expensePage", {replace: true})}>Expenses</span>
+              <span onClick={() => navigate("/expensePage", { replace: true })}>Expenses</span>
             </li>
             <li>
-              <span onClick={() => navigate("/account", {replace: true})}>Account</span>
+              <span onClick={() => navigate("/account", { replace: true })}>Account</span>
             </li>
           </div>
 
           <div className="contact">
             <h4>Contact Us</h4>
             <p>Address: <a href="">Chhattissgarh, India</a></p>
-            <p>Email: <a href="mailto:support.balanceo@gmail.com">support.balanceo@gmail.com</a> </p>
+            <p>Email: <a href="mailto:support.balanceo@gmail.com">balanceo.services@gmail.com</a> </p>
             <span style={{ display: 'block', marginTop: '8rem' }}>Register For Free
               <Link to="/login" className="home-getstarted">
                 Get Started

@@ -38,6 +38,7 @@ export function ExpensePageTable() {
     function handleConfirmDelete(row) {
         console.log("Confirm delete action")
         console.log("Selected row for deletion: ", row._id)
+        setConfirmOpen(false);
         if (!row) return;
         const deleted = deleteItems(row);
         if (!deleted) {
@@ -45,7 +46,6 @@ export function ExpensePageTable() {
             toast.error("failed to delete expense")
             return
         }
-        setConfirmOpen(false);
     }
 
     function handleCancelDelete() {
