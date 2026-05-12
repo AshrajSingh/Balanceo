@@ -1,5 +1,5 @@
 import express from 'express';
-import { User } from '../models/user.js';
+import { User } from '../models/user.ts';
 import jwt from 'jsonwebtoken'
 import dotenv from "dotenv";
 dotenv.config();

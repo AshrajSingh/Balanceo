@@ -1,0 +1,156 @@
+.home-footer {
+    position: relative;
+    /* padding: 0 2rem; */
+    z-index: 1;
+    text-align: left;
+    background: #1c1c1f;
+}
+
+
+.footerInfo {
+    display: flex;
+    /* border-top: 1px solid #3a3a3a; */
+    /* border-bottom: 1px solid #3a3a3a; */
+    gap: 5rem;
+    padding: 0 0 0 6rem;
+    margin-top: 2rem;
+}
+
+.navigations {
+    flex: 33%;
+    /* text-align: left; */
+    /* margin: 3rem 0rem; */
+}
+
+.navigations li {
+    color: grey;
+    font-size: 1rem;
+    font-weight: 300;
+    cursor: pointer;
+    list-style: none;
+    margin-bottom: 1rem;
+    width: 55%;
+}
+
+.navigations li::before {
+    content: "➜";
+    font-size: 14px;
+    color: #00f7ff;
+    margin-right: 12px;
+}
+
+.navigations li:hover {
+    color: white;
+    transition: color 0.3s ease;
+}
+
+.navigations h4 {
+    letter-spacing: 0.15rem;
+    opacity: 40%;
+    font-size: 0.8rem;
+    width: 45%;
+}
+
+.navigations hr {
+    opacity: 30%;
+    /* width: 50%; */
+}
+
+.contact {
+    flex: 33%;
+    color: #b1b0b5;
+    /* text-align: left; */
+    /* margin: 3rem 0rem; */
+}
+
+.contact h4 {
+    letter-spacing: 0.15rem;
+    font-size: 0.8rem;
+    opacity: 40%;
+    width: 45%;
+}
+
+.contact a {
+    text-decoration: none;
+    color: #b1b0b5;
+    /* margin-left: 1rem; */
+}
+
+.contact h5 {
+    font-size: 1.05rem;
+    margin: 0;
+    color: white;
+}
+
+.contact hr {
+    opacity: 30%;
+    /* width: 50%; */
+}
+
+.snapshot {
+    flex: 34%
+}
+
+.snapshot h4 {
+    font-size: 0.8rem;
+    opacity: 40%;
+    width: 45%;
+}
+
+.snapshot h1 {
+    /* opacity: 60%; */
+    font-size: 0.9rem;
+    font-weight: 400;
+    margin: 0;
+}
+
+.snapshot hr {
+    opacity: 30%;
+}
+
+.snapshot li {
+    margin-bottom: 1rem;
+    list-style: none;
+    width: 75%;
+}
+
+.snapshot li span {
+    margin-left: 4rem;
+    /* opacity: 100%; */
+}
+
+.footer-content h1 {
+    margin: 0 3rem 7.15rem 3rem;
+    letter-spacing: 0.5em;
+    font-size: 2.20vw;
+    color: rgb(131, 129, 129);
+    font-style: italic;
+    font-weight: 300;
+    text-transform: uppercase;
+}
+
+.footer-content hr {
+    margin: 0;
+    margin-top: 4rem;
+    opacity: 40%;
+
+}
+
+.footer-details {
+    max-width: 1320px;
+    /* margin: 0 auto; */
+    display: flex;
+    align-items: center;
+    gap: 0;
+}
+
+.footer-details span {
+    font-size: 0.875rem;
+    color: #b1b0b5;
+    font-weight: 300;
+    letter-spacing: 0.05rem;
+}
+
+.footer-tagline {
+    flex: 1;
+}

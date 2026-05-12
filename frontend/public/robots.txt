@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://balanceo-fhz1.onrender.com/sitemap.xml

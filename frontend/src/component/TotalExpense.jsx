@@ -31,7 +31,7 @@ export default function TotalExpense() {
 
 
     return <div>
-        <ResponsiveContainer width="91%" height={362} style={{ borderRadius: '10px', backgroundColor: '#212020', boxShadow: 'rgba(0, 0, 0, 0.4) 2px 4px 11px' }}>
+        <ResponsiveContainer width="91%" height={362} style={{ borderRadius: '10px', backgroundColor: '#1c1c1f', boxShadow: 'rgba(0, 0, 0, 0.4) 2px 4px 11px' }}>
             <p>Expense</p>
             <PieChart>
                 <Pie

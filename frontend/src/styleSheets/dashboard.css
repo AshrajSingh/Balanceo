@@ -5,10 +5,17 @@
 /* Base Styles (Desktop First - Large Screens 1920px+) */
 .dashboard {
   font-family: "Poppins", sans-serif;
-  background: linear-gradient(135deg, #1f1f1f 0%, #0a0a0a 100%);
+  background: #09090b;
   min-height: 100vh;
   padding: 0;
   margin: 0;
+}
+.user-icon img{
+  width: 2.5rem;
+  height: 2.15rem;
+}
+.user-icon{
+  cursor: pointer;
 }
 
 .dashboard button {
@@ -23,65 +30,6 @@
   cursor: pointer;
   font-size: 1.5rem;
   font-weight: bold;
-}
-
-.footer-word {
-  position: absolute;
-  bottom: 0rem;
-  font-size: 11vw;
-  font-weight: 900;
-  color: rgba(255, 255, 255, 0.05);
-  letter-spacing: 0.3em;
-  text-transform: uppercase;
-  z-index: 0;
-  pointer-events: none;
-  user-select: none;
-}
-
-.footerInfo {
-  display: flex;
-  margin: 10rem 2rem 10rem 5rem;
-  border-top: 1px solid #3a3a3a;
-  border-bottom: 1px solid #3a3a3a;
-  gap: 3rem;
-}
-
-.contact {
-  flex: 30%;
-  color: #b1b0b5;
-  text-align: left;
-  margin: 3rem 0rem;
-}
-
-.contact h4 {
-  margin-bottom: 2.5rem;
-  font-size: 1.2rem;
-}
-
-.contact a {
-  text-decoration: none;
-  color: #a6c4d4dc;
-  margin-left: 1rem;
-  transition: color 0.3s ease;
-}
-
-.contact a:hover {
-  color: #3464ff;
-}
-
-.footer-about h3 {
-  color: #b1b0b5;
-  margin-bottom: 2rem;
-  font-size: 1.3rem;
-}
-
-.footer-about {
-  color: #a6c4d4dc;
-  flex: 50%;
-  text-align: left;
-  letter-spacing: 0.15rem;
-  line-height: 1.5rem;
-  margin: 3rem 0rem;
 }
 
 /* ============================================

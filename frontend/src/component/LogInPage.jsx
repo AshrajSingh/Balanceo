@@ -1,18 +1,18 @@
 import '../styleSheets/loginPage.css'
 import SigninPage from '../component/SignInPage'; 
-import { useEffect, useRef, useState } from 'react';
-import { useRecoilState, useSetRecoilState } from 'recoil';
-import { authAtom, logInAtom } from '../store/userAtom';
+import { useRef, useState } from 'react';
+import { useSetRecoilState } from 'recoil';
 import toast from 'react-hot-toast';
 import { logInUser } from '../services/authService';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+import { authAtom, logInAtom } from '../store/userAtom';
 
 
 export default function LoginPage() {
 
     console.log("Load Login Page");
     const [isFlipped, setIsFlipped] = useState(false);
-    const [auth, setAuth] = useRecoilState(authAtom)
+    const setAuth= useSetRecoilState(authAtom)
     const setLogin = useSetRecoilState(logInAtom);
     const emailRef = useRef("");
     const passwordRef = useRef("");
@@ -46,13 +46,14 @@ export default function LoginPage() {
             localStorage.setItem("user", JSON.stringify({
                 user_id: response.user_id,
                 user: userData.email,
+                username: response.username,
                 token: response.token
             }))
             
             setAuth({isLoggedIn: true, isChecked: true ,user: userData.email})
             localStorage.setItem("auth", JSON.stringify({isLoggedIn:true, user: userData.email}))
 
-            navigate("/dashboard")
+            navigate("/dashboardPage")
 
             toast.success(response.message || 'Login Successful')
 

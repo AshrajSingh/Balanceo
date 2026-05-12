@@ -1,5 +1,5 @@
 import express from 'express'
-import userAuthentication from '../middlewares/userAuthentication.js'
+import userAuthentication from '../middlewares/userAuthentication.ts'
 import { incomeModel } from '../models/income.js'
 
 const app = express()

@@ -11,6 +11,7 @@ import "../styleSheets/homePage.css"
 import { ExpensePageTable } from "./ExpensePageTable";
 import SignOutConfirm from "./signOutConfirm";
 import { useTotalExpense } from "../hooks/totalExpenseHook";
+import Footer from "./Footer";
 
 const ExpensePage = () => {
   const [data, setData] = useRecoilState(expenseAtom);
@@ -18,15 +19,14 @@ const ExpensePage = () => {
   const [openSignOut, setOpenSignOut] = useState(true)
   const [isGroupedView, setIsGroupedView] = useRecoilState(isGroupedViewState);
   const groupedExpenseData = useRecoilValue(groupedExpenseState);
-  const setAuth = useSetRecoilState(authAtom);
   const navigate = useNavigate();
   const categoryRef = useRef("");
   const expenseRef = useRef("");
   const expenseAmountRef = useRef("");
   const resetData = useResetData();
   const userData = JSON.parse(localStorage.getItem("user"));
-  const user_id = userData.user_id;
-  const total_expenses = useTotalExpense();
+  const user_id = userData?.user_id;
+  const total_expenses = useTotalExpense().toLocaleString('en-IN', {style: 'currency', currency: 'INR' });
 
   useEffect(() => {
     document.body.style.display = "block";
@@ -71,27 +71,42 @@ const ExpensePage = () => {
 
   }
 
-  function handleCancel(){
+  function handleCancel() {
     setOpenSignOut(false)
   }
 
   function handleLogout() {
-      setOpenSignOut(false)
-      resetData();
-      navigate("/", { replace: true });
-      toast.success("Logout successful!")
+    setOpenSignOut(false)
+    resetData();
+    navigate("/", { replace: true });
+    toast.success("Logout successful!")
   }
+
+  // Function to check if nav item is active
+  const isActive = (path) => {
+    return location.pathname === path;
+  };
 
   return (
     <div className={"container"}>
-      <header className={"header"}>
-        <span className={"home-logo"} onClick={() => navigate("/")}>BALANCEO</span>
-        <SignOutConfirm
-          open={openSignOut}
-          message={"Are you sure you want to sign out?"}
-          onConfirm={() => handleLogout()}
-          onCancel={handleCancel}
-        />
+      {/* ── NAVBAR ─────────────────────────────────────────────────────── */}
+      <header className="pp-nav">
+        <span className="pp-nav-logo" onClick={() => navigate("/")}>BALANCEO</span>
+        <nav className="pp-nav-links">
+          {["Home", "Dashboard", "Income", "Expense"].map((item) => {
+            const path = item === "Home" ? "/" : `/${item.toLowerCase()}Page`
+            return (
+              <span
+                key={item}
+                className={`pp-nav-item ${isActive(path) ? "pp-nav-active" : ""}`}
+                onClick={() => navigate(path)}
+              >
+                {item}
+              </span>
+            )
+          })}
+          <span className="pp-nav-item" onClick={() => navigate('/userProfile')}>Account</span>
+        </nav>
       </header>
       <main>
         <section className={"section"}>
@@ -102,13 +117,13 @@ const ExpensePage = () => {
             </h1>
             <div className={"expenseSummary"}>
               <span className={"summaryLabel"}>Total Expense</span>
-              <span className={"amount"}>Rs {total_expenses} </span>
+              <span className={"amount"}>{total_expenses} </span>
             </div>
             <button className={"newExpenseBtn"} onClick={() => setOpen(true)}>+ New Expense</button>
           </div>
           <div className={"incomeGraph"}>
             <ResponsiveContainer width="95%" height={360} style={{
-              borderRadius: "10px", backgroundColor: "#212020", boxShadow: "rgba(0, 0, 0, 0.4) 2px 4px 11px",
+              borderRadius: "10px", backgroundColor: "#1c1c1f", boxShadow: "rgba(0, 0, 0, 0.4) 2px 4px 11px",
             }}
             >
               {/* <p>Expense Over Time</p> */}
@@ -207,53 +222,7 @@ const ExpensePage = () => {
         </div>
       </main>
 
-      <footer className={"home-footer"}>
-        <div className={"footerInfo"}>
-
-          <div className={"navigations"}>
-            <h4>Navigation Links</h4>
-            <li>
-              <span onClick={() => navigate("/", { replace: true })}>Home</span>
-            </li>
-
-            <li>
-              <span onClick={() => navigate("/dashboard", { replace: true })}>Dashboard</span>
-            </li>
-
-            <li>
-              <span onClick={() => navigate("/incomePage", { replace: true })}>Incomes</span>
-            </li>
-
-            <li>
-              <span onClick={() => navigate("/expensePage", { replace: true })}>Expenses</span>
-            </li>
-            <li>
-              <span onClick={() => navigate("/account", { replace: true })}>Account</span>
-            </li>
-          </div>
-
-          <div className="contact">
-            <h4>Contact Us</h4>
-            <p>Address: <a href="">Chhattissgarh, India</a></p>
-            <p>Email: <a href="mailto:support.balanceo@gmail.com">balanceo.services@gmail.com</a> </p>
-            <span style={{ display: 'block', marginTop: '8rem' }}>Register For Free
-              <Link to="/login" className="home-getstarted">
-                Get Started
-              </Link>
-            </span>
-          </div>
-
-          <div className="footer-about">
-            <h3>About Balanceo</h3>
-            <span>Balanceo is your personal finance companion designed to simplify money management. It helps you track your income and expenses effortlessly, visualize your spending habits through dynamic charts, and stay in control of your financial goals. Whether you’re budgeting for the month or reviewing past transactions, Balanceo keeps everything organized, secure, and accessible anytime, anywhere.</span>
-          </div>
-        </div>
-
-        <div className="footer-content">
-          <h1>Finances, Simplified</h1>
-          <p className="footer-word">BALANCEO</p>
-        </div>
-      </footer>
+      <Footer />
     </div>
   );
 };

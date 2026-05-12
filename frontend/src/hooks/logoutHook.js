@@ -10,6 +10,7 @@ export function useResetData() {
 
         //clearing data from local storage and recoil state
         localStorage.clear();
+        sessionStorage.clear();
 
         resetExpense();
         resetIncome();

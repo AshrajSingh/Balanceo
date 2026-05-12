@@ -2,9 +2,9 @@ import { useState } from 'react';
 import '../styleSheets/signOutConfirm.css';
 
 const SignOutConfirm = ({ message, onConfirm }) => {
-    const [visible, setVisible] = useState(false);
+    const [visible, setVisible] = useState(true);
 
-    const handleClick = () => setVisible(true);
+    // const handleClick = () => setVisible(true);
     const handleCancel = () => setVisible(false);
     const handleConfirm = () => {
         setVisible(false);
@@ -12,9 +12,9 @@ const SignOutConfirm = ({ message, onConfirm }) => {
     };
     return (
         <>
-            <button className='signOut' onClick={handleClick}>
+            {/* <button className='signOut' onClick={handleClick}>
                 Sign Out
-            </button>
+            </button> */}
 
             {visible && (
                 <div className="confirm-overlay">

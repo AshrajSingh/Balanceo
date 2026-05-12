@@ -1,7 +1,7 @@
 .tableWrapper {
     box-shadow: 0 0.1875rem 0.4375rem rgba(0, 0, 0, 0.4); /* 3px 7px */
     border-radius: 0.625rem; /* 10px */
-    background-color: #212020;
+    background-color: #1c1c1f;
     padding: 1.25rem; /* 20px */
     width: 85%;
     overflow-x: auto; /* ensures table scrolls on small screens */

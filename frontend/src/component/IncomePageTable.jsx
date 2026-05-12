@@ -77,8 +77,8 @@ export function IncomePageTable() {
                                 </tr>
                             ) : groupedIncomeData.map((group, index) => (
                                 <tr key={index}>
-                                    <td>{group.category}</td>
-                                    <td>{group.totalAmount.toFixed(2)}</td>
+                                    <td>{group.category.charAt(0).toUpperCase() + group.category.slice(1)}</td>
+                                    <td>{group.totalAmount.toLocaleString('en-IN', { style: 'currency', currency: 'INR' })}</td>
                                 </tr>
                             ))
                         }
@@ -112,14 +112,14 @@ export function IncomePageTable() {
                             </tr>
                         ) : data.map((row, index) => (
                             <tr key={row._id || index}>
-                                <td>{row.category}
+                                <td>{row.category.charAt(0).toUpperCase() + row.category.slice(1)}
                                     {console.log("row data: ", row)}
                                 </td>
 
-                                <td>{row.income}</td>
+                                <td>{row.income.charAt(0).toUpperCase() + row.income.slice(1)}</td>
 
                                 <td>
-                                    {row.incomeAmount}
+                                    {row.incomeAmount.toLocaleString('en-IN', { style: 'currency', currency: 'INR' })}
                                 </td>
 
                                 <td className="incomeDate">{new Date(row.date).toLocaleDateString('en-GB', {

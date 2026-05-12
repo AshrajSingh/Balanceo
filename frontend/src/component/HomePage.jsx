@@ -8,6 +8,8 @@ import "../styleSheets/homePage.css";
 import { useRecoilValue } from "recoil";
 import { authAtom } from "../store/userAtom";
 import { useEffect } from "react";
+import userIcon from '../images/user-icon.png';
+import Footer from "./Footer";
 
 export default function HomePage() {
   const auth = useRecoilValue(authAtom)
@@ -33,7 +35,7 @@ export default function HomePage() {
       if (!haveVisited && auth.isLoggedIn) {
         sessionStorage.setItem("haveVisited", 'true')
 
-        navigate("/dashboard", { replace: true })
+        navigate("/dashboardPage", { replace: true })
       }
       else {
         sessionStorage.setItem("haveVisited", 'true')
@@ -41,18 +43,32 @@ export default function HomePage() {
     }, 1000)
   }, [auth.isLoggedIn, navigate])
 
-
+  // Function to check if nav item is active
+  const isActive = (path) => {
+    return location.pathname === path;
+  };
 
   return (
     <div className="home-container">
       {/* Header */}
-      <header className="home-header">
-        <div className="home-logo">
-          <Link to={"/"}>BALANCEO</Link>
-        </div>
-        <Link to="/login" className="home-signin">
-          Get Started
-        </Link>
+      {/* ── NAVBAR ─────────────────────────────────────────────────────── */}
+      <header className="pp-nav">
+        <span className="pp-nav-logo" onClick={() => navigate("/")}>BALANCEO</span>
+        <nav className="pp-nav-links">
+          {["Home", "Dashboard", "Income", "Expense"].map((item) => {
+            const path = item === "Home" ? "/" : `/${item.toLowerCase()}Page`
+            return (
+              <span
+                key={item}
+                className={`pp-nav-item ${isActive(path) ? "pp-nav-active" : ""}`}
+                onClick={() => navigate(path)}
+              >
+                {item}
+              </span>
+            )
+          })}
+          <span className="pp-nav-item" onClick={() => navigate('/userProfile')}>Account</span>
+        </nav>
       </header>
 
       {/* Main split content */}
@@ -131,55 +147,83 @@ export default function HomePage() {
         </div>
       </div>
 
+          <Footer />
 
-      {/* Footer */}
-      <footer className={"home-footer"}>
+      {/* <footer className={"home-footer"}>
         <div className={"footerInfo"}>
 
+          {auth.isLoggedIn ? (
+            <div className="snapshot">
+              <h4>YOUR SNAPSHOT <hr /></h4>
+
+              <li>
+                <h1>Total Income: <span style={{ color: '#00c49f' }}>+ {total_income}</span></h1>
+              </li>
+
+              <li>
+                <h1>Total Expense:<span style={{ color: '#ff4d4d' }}>- {total_expense}</span></h1>
+              </li>
+
+              <li>
+                <h1>Total Balance:<span style={{ color: '#3464ff' }}>{total_balance}</span></h1>
+              </li>
+            </div>
+          ) : (
+            <div className="snapshot">
+              <h4>GET STARTED</h4>
+              <hr />
+              <p style={{ color: '#8a8a9a', marginBottom: '1rem', lineHeight: '1.6' }}>
+                Track your income and expenses in one place. Free forever.
+              </p>
+              <Link to="/login" className="home-getstarted">
+                Create Free Account
+              </Link>
+            </div>
+          )}
+
           <div className={"navigations"}>
-            <h4>Navigation Links</h4>
-            <li>
-              <span onClick={() => navigate("/", { replace: true })}>Home</span>
+            <h4>QUICK LINKS <hr /></h4>
+
+            <li onClick={() => navigate("/", { replace: true })}>
+              <span>Home</span>
             </li>
 
-            <li>
-              <span onClick={() => navigate("/dashboard", { replace: true })}>Dashboard</span>
+            <li onClick={() => navigate("/dashboardPage", { replace: true })}>
+              <span>Dashboard</span>
             </li>
 
-            <li>
-              <span onClick={() => navigate("/incomePage", { replace: true })}>Incomes</span>
+            <li onClick={() => navigate("/incomePage", { replace: true })}>
+              <span>Incomes</span>
             </li>
 
-            <li>
-              <span onClick={() => navigate("/expensePage", { replace: true })}>Expenses</span>
+            <li onClick={() => navigate("/expensePage", { replace: true })}>
+              <span>Expenses</span>
             </li>
-            <li>
-              <span onClick={() => navigate("/account", { replace: true })}>Account</span>
+            <li onClick={() => navigate("/userProfile", { replace: true })}>
+              <span>Account</span>
             </li>
           </div>
 
           <div className="contact">
-            <h4>Contact Us</h4>
-            <p>Address: <a href="">Chhattissgarh, India</a></p>
-            <p>Email: <a href="mailto:support.balanceo@gmail.com">balanceo.services@gmail.com</a> </p>
-            <span style={{ display: 'block', marginTop: '8rem' }}>Register For Free
-              <Link to="/login" className="home-getstarted">
-                Get Started
-              </Link>
-            </span>
+            <h4>BALANCEO <hr /></h4>
+
+            <h5> Finances, Simplified</h5>
+            <p> <a href="mailto:support.balanceo@gmail.com">balanceo.services@gmail.com</a> </p>
+            <p>Chhattissgarh, India</p>
           </div>
 
-          <div className="footer-about">
-            <h3>About Balanceo</h3>
-            <span>Balanceo is your personal finance companion designed to simplify money management. It helps you track your income and expenses effortlessly, visualize your spending habits through dynamic charts, and stay in control of your financial goals. Whether you’re budgeting for the month or reviewing past transactions, Balanceo keeps everything organized, secure, and accessible anytime, anywhere.</span>
-          </div>
         </div>
 
         <div className="footer-content">
-          <h1>Finances, Simplified</h1>
           <p className="footer-word">BALANCEO</p>
+          <hr />
+          <p className="pp-footer-inner" style={{margin: '1rem auto'}}>
+            <span className="pp-footer-logo"> Balanceo </span>
+            <span className="pp-footer-tagline"> Track every rupee · Finances, Simplified. </span>
+            <span className="pp-footer-copy"> &copy; 2026 BALANCEO. All rights reserved. </span>
+          </p>
         </div>
-      </footer>
+      </footer> */}
 
     </div>
   );

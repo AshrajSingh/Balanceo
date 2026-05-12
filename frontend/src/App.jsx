@@ -11,6 +11,7 @@ import { useEffect } from 'react'
 import HomePage from './component/HomePage.jsx'
 import IncomePage from './component/IncomePage.jsx'
 import ExpensePage from './component/ExpensePage.jsx'
+import ProfilePage from './component/ProfilePage'
 
 function App() {
   const setAuth = useSetRecoilState(authAtom)
@@ -36,7 +37,6 @@ function App() {
     <div>
       <BrowserRouter>
         <Routes>
-          {/* default route - allow access even when logged in */}
           <Route path="/" element={
             <PublicRoute allowWhenLoggedIn={true}>
               <HomePage />
@@ -48,20 +48,36 @@ function App() {
               <LoginPage />
             </PublicRoute>
           } />
-          <Route path="/dashboard" element={
+          <Route path="/dashboardPage" element={
             <PrivateRoute>
               <Dashboard />
             </PrivateRoute>
           } />
 
-          <Route path='/incomePage' element={<IncomePage />} />
-          <Route path='/expensePage' element={<ExpensePage />} />
-          
+          <Route path='/incomePage' element={
+            <PrivateRoute>
+              <IncomePage />
+            </PrivateRoute>
+          } />
+          <Route path='/expensePage' element={
+            <PrivateRoute>
+              <ExpensePage />
+            </PrivateRoute>
+          } />
+
+          <Route path="/userProfile" element={
+            <PrivateRoute>
+              <ProfilePage />
+            </PrivateRoute>
+          } />
         </Routes>
       </BrowserRouter>
       <Toaster position="top-right" reverseOrder={false} />
+
+
     </div>
   )
 }
 
 export default App
+

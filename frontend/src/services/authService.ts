@@ -1,6 +1,11 @@
 
 const apiURL = import.meta.env.VITE_API_URL
-export async function signInUser({ username, email, password }) {
+type SignInPayload = {
+    username: string,
+    email: string,
+    password: string
+}
+export async function signInUser({ username, email, password }: SignInPayload) {
     // Handle sign-in logic here
     console.log("Signing in with:", username, email, password);
 
@@ -27,7 +32,12 @@ export async function signInUser({ username, email, password }) {
 
 //--------------------------------------------------------------------------------------------------------
 
-export async function logInUser({ email, password }) {
+type LogInPayload = {
+    email: string,
+    password: string
+}
+
+export async function logInUser({ email, password }: LogInPayload) {
     console.log("Logging in with:", email, password);
 
     const logInResponse = await fetch(`${apiURL}/login`, {
@@ -51,13 +61,21 @@ export async function logInUser({ email, password }) {
 }
 
 //--------------------------------------------------------------------------------------------------------
-
-export async function setUserdata({ user_id, category, expense, expenseAmount }) {
+type SetUserDataPayload = {
+    user_id: string,
+    category: string,
+    expense: string,
+    expenseAmount: number
+}
+export async function setUserdata({ user_id, category, expense, expenseAmount }: SetUserDataPayload) {
     console.log("Fetching data from setUserdata")
 
     // GET USER TOKEN FROM LOCAL STORAGE
     const users = localStorage.getItem("user")
-    const user = JSON.parse(users)
+    if (!users) {
+        throw new Error("User not found in localStorage");
+    }
+    const user: { token: string } = JSON.parse(users)
     const token = user.token
 
     console.log("setting user data with: ", user_id, category, expense, expenseAmount)
@@ -82,13 +100,18 @@ export async function setUserdata({ user_id, category, expense, expenseAmount })
     }
 }
 
-export async function deleteExpenses(expense_id) {
+export async function deleteExpenses(expense_id: string) {
     console.log("deleteExpense called")
     console.log("expenseId in deleteExpense func: ", expense_id);
 
     // GET USER TOKEN FROM LOCAL STORAGE
     const users = localStorage.getItem("user")
-    const user = JSON.parse(users)
+
+    if (!users) {
+        throw new Error("User not found");
+    }
+
+    const user: { token: string } = JSON.parse(users)
     const token = user.token
 
     try {
@@ -113,14 +136,24 @@ export async function deleteExpenses(expense_id) {
 
 // INCOME ROUTES 
 //--------------------------------------------------------------------------------------------------------
-
-export async function setUserIncome({ user_id, category, income, incomeAmount }) {
+type SetIncomeDataPayload = {
+    user_id: string,
+    category: string,
+    income: string,
+    incomeAmount: number
+}
+export async function setUserIncome({ user_id, category, income, incomeAmount }: SetIncomeDataPayload) {
     console.log("income api called")
     console.log("income params in authService: ", user_id, category, income, incomeAmount)
 
     // GET USER TOKEN FROM LOCAL STORAGE
     const users = localStorage.getItem("user")
-    const user = JSON.parse(users)
+
+    if (!users) {
+        throw new Error("User not found");
+    }
+
+    const user: { token: string } = JSON.parse(users)
     const token = user.token
 
     const incomeResponse = await fetch(`${apiURL}/incomePage/income/add`, {
@@ -141,13 +174,18 @@ export async function setUserIncome({ user_id, category, income, incomeAmount })
     }
 }
 
-export async function deleteIncome(income_id) {
+export async function deleteIncome(income_id: string) {
     console.log("deleteIncome called")
     console.log("income_id in deleteIncome func: ", income_id);
 
     // GET USER TOKEN FROM LOCAL STORAGE
     const users = localStorage.getItem("user")
-    const user = JSON.parse(users)
+
+    if (!users) {
+        throw new Error("User not found");
+    }
+
+    const user: { token: string } = JSON.parse(users)
     const token = user.token
 
     try {

@@ -1,6 +1,6 @@
 import express from 'express';
-import { User } from '../models/user.js';
-import userAuthentication from '../middlewares/userAuthentication.js';
+import { User } from '../models/user.ts';
+import userAuthentication from '../middlewares/userAuthentication.ts';
 import jwt from 'jsonwebtoken';
 const app = express();
 app.use(express.json());
@@ -37,8 +37,6 @@ router.post('/login', async function (req, res) {
     } catch (error) {
         res.status(400).json({ error })
     }
-    //check if the user data is present in database, if there, show home page else navigate to signUp page
-
 })
 
 export default router;

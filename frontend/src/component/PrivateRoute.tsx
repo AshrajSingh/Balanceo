@@ -1,9 +1,15 @@
 import { useRecoilValue } from "recoil";
-import { authAtom } from "../store/userAtom";
+import { authAtom } from "../store/userAtom.js";
 import { Navigate } from "react-router-dom";
+import { type ReactNode } from "react";
+
+type RouteProps = {
+  children: ReactNode;
+  allowWhenLoggedIn?: boolean;
+};
 
 //if user is logged in navigate to dashboard
-export function PublicRoute({ children, allowWhenLoggedIn = false }) {
+export function PublicRoute({ children, allowWhenLoggedIn = false }: RouteProps) {
   const auth = useRecoilValue(authAtom)
 
   if (!auth.isChecked) {
@@ -28,13 +34,14 @@ export function PublicRoute({ children, allowWhenLoggedIn = false }) {
   }
 
   // For other public routes (like login), redirect to dashboard if logged in
-  return auth.isLoggedIn ? <Navigate to={"/dashboard"} replace /> : children
+  return auth.isLoggedIn ? <Navigate to={"/dashboardPage"} replace /> : children
 }
 
 //if user is not logged in navigate to login
-export default function PrivateRoute({ children }) {
+export default function PrivateRoute({ children }:RouteProps) {
   const auth = useRecoilValue(authAtom)
   console.log("isChecked from private Route: ", auth)
+
   if (!auth.isChecked) {
     return (
       <div style={{
@@ -52,6 +59,5 @@ export default function PrivateRoute({ children }) {
     );
   }
 
-  return auth.isLoggedIn ? children : <Navigate to={"/"} replace />
+  return auth.isLoggedIn ? children : <Navigate to={"/login"} replace />
 }
-

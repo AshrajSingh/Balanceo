@@ -3,40 +3,46 @@ import AmountWrapper from "../wrappers/AmountWrapper";
 import StatsCard from "../wrappers/StatsCard";
 import '../styleSheets/statsCard.css'
 import '../styleSheets/dashboard.css'
+import { useRefreshData } from "../hooks/useRefreshData";
 import '../styleSheets/homePage.css'
 import '../styleSheets/incomePage.css'
 import MonthlyExpensesChart from "../wrappers/ExpenseGraph";
 import IncomeGraph from "../component/IncomeGraph.jsx";
 import toast from "react-hot-toast";
 import { useRecoilState, useRecoilValue } from "recoil";
-import { authAtom, expenseAtom, incomeAtom } from "../store/userAtom.jsx";
+import { authAtom, expenseAtom, incomeAtom } from "../store/userAtom.tsx";
 import { Link, useNavigate } from "react-router-dom";
-import { useResetData } from "../hooks/logoutHook.js";
+
 import SignOutConfirm from "./signOutConfirm.jsx";
 import { useTotalIncome } from "../hooks/totalIncomeHook.js";
 import { useTotalExpense } from "../hooks/totalExpenseHook.js";
 import { useTotalBalance } from "../hooks/totalBalanceHook.js";
+import userIcon from '../images/user-icon.png'
+import Footer from "./Footer.jsx";
 
 
 // display this page when user is succesfully signed in/loggend in 
 export default function Dashboard() {
     const [openSignOut, setOpenSignOut] = useState(false)
     const [auth, setAuth] = useRecoilState(authAtom)
-    const resetData = useResetData()
+    // const refreshData = useRefreshData()
+    console.log("isLoggedIn in Dashboard.jsx: ", auth.isLoggedIn)
 
-    const total_income = useTotalIncome()
-    const total_expense = useTotalExpense()
-    const total_balance = useTotalBalance()
-
+    const total_income = useTotalIncome().toLocaleString('en-IN', {style: 'currency', currency: 'INR' })
+    const total_expense = useTotalExpense().toLocaleString('en-IN', {style: 'currency', currency: 'INR' })
+    const total_balance = useTotalBalance().toLocaleString('en-IN', {style: 'currency', currency: 'INR' })
 
     const navigate = useNavigate()
 
-    console.log("isLoggedIn in Dashboard.jsx: ", auth.isLoggedIn)
+    if(!auth.isLoggedIn) return null
 
     useEffect(() => {
         document.body.style.display = "block"
         document.body.style.background = "black"
         document.body.style.color = "white"
+
+        // Refresh data when dashboard mounts
+        // refreshData()
 
         return () => {
             document.body.style.display = ""
@@ -46,82 +52,60 @@ export default function Dashboard() {
     }, [])
 
 
-    function handleCancel() {
-        setOpenSignOut(false)
-    }
-    function handleLogout() {
-        setOpenSignOut(false)
-        resetData();
-        navigate("/", { replace: true });
-        toast.success("Logout successful!")
-    }
+    // Function to check if nav item is active
+    const isActive = (path) => {
+        return location.pathname === path;
+    };
 
     return <div className="dashboard">
         <div className="container">
-            <header className={"header"}>
-                <span className={"home-logo"} onClick={() => navigate("/")}>BALANCEO</span>
-                <SignOutConfirm
-                    open={openSignOut}
-                    message={"Are you sure you want to sign out?"}
-                    onConfirm={() => handleLogout()}
-                    onCancel={handleCancel}
-                />
+            {/* ── NAVBAR ─────────────────────────────────────────────────────── */}
+            <header className="pp-nav">
+                <span className="pp-nav-logo" onClick={() => navigate("/")}>BALANCEO</span>
+                <nav className="pp-nav-links">
+                    {["Home", "Dashboard", "Income", "Expense"].map((item) => {
+                        const path = item === "Home" ? "/" : `/${item.toLowerCase()}Page`
+                        return (
+                            <span
+                                key={item}
+                                className={`pp-nav-item ${isActive(path) ? "pp-nav-active" : ""}`}
+                                onClick={() => navigate(path)}
+                            >
+                                {item}
+                            </span>
+                        )
+                    })}
+                    <span className="pp-nav-item" onClick={() => navigate('/userProfile')}>Account</span>
+                </nav>
             </header>
             <AmountWrapper>
-                <StatsCard title={'Total Expense'} value={`Rs ${total_expense}`} />
-                <StatsCard title={'Total Income'} value={`Rs ${total_income}`} />
-                <StatsCard title={'Total Balance'} value={`Rs ${total_balance}`} />
+                <div className="pp-stat-pill pp-stat-income" style={{width: '30%', height: '4.5rem'}}>
+                    <div className="pp-stat-bar pp-stat-bar-teal" />
+                    <div className="pp-stat-content">
+                        <span className="pp-stat-label" style={{fontSize: '0.85rem'}}>TOTAL INCOME</span>
+                        <span className="pp-stat-value pp-teal">+{total_income}</span>
+                    </div>
+                </div>
+                <div className="pp-stat-pill pp-stat-expense" style={{width: '30%', height: '4.5rem'}}>
+                    <div className="pp-stat-bar pp-stat-bar-red" />
+                    <div className="pp-stat-content">
+                        <span className="pp-stat-label" style={{fontSize: '0.85rem'}}>TOTAL EXPENSE</span>
+                        <span className="pp-stat-value pp-red">-{total_expense}</span>
+                    </div>
+                </div>
+                <div className="pp-stat-pill pp-stat-balance" style={{width: '30%', height: '4.5rem'}}>
+                    <div className="pp-stat-bar pp-stat-bar-blue" />
+                    <div className="pp-stat-content">
+                        <span className="pp-stat-label" style={{fontSize: '0.85rem'}}>NET BALANCE</span>
+                        <span className="pp-stat-value pp-blue">₹{total_balance}</span>
+                    </div>
+                </div>
             </AmountWrapper>
             <MonthlyExpensesChart />
             <IncomeGraph />
 
-            <footer className="home-footer">
-                <div className="footerInfo">
-
-                    <div className="navigations">
-                        <h4>Navigation Links</h4>
-                        <li>
-                            <span onClick={() => navigate("/")}>Home</span>
-                        </li>
-
-                        <li>
-                            <span onClick={() => navigate("/dashboard")}>Dashboard</span>
-                        </li>
-
-                        <li>
-                            <span onClick={() => navigate("/incomePage")}>Incomes</span>
-                        </li>
-
-                        <li>
-                            <span onClick={() => navigate("/expensePage")}>Expenses</span>
-                        </li>
-                        <li>
-                            <span onClick={() => navigate("/account")}>Account</span>
-                        </li>
-                    </div>
-
-                    <div className="contact">
-                        <h4>Contact Us</h4>
-                        <p>Address: <a href="">Chhattissgarh, India</a></p>
-                        <p>Email: <a href="mailto:support.balanceo@gmail.com">balanceo.services@gmail.com</a> </p>
-                        <span style={{ display: 'block', marginTop: '8rem' }}>Register For Free
-                            <Link to="/login" className="home-getstarted">
-                                Get Started
-                            </Link>
-                        </span>
-                    </div>
-
-                    <div className="footer-about">
-                        <h3>About Balanceo</h3>
-                        <span>Balanceo is your personal finance companion designed to simplify money management. It helps you track your income and expenses effortlessly, visualize your spending habits through dynamic charts, and stay in control of your financial goals. Whether you’re budgeting for the month or reviewing past transactions, Balanceo keeps everything organized, secure, and accessible anytime, anywhere.</span>
-                    </div>
-                </div>
-
-                <div className="footer-content">
-                    <h1>Finances, Simplified</h1>
-                    <p className="footer-word">BALANCEO</p>
-                </div>
-            </footer>
+            <Footer />
+            
         </div>
     </div>
 }
