@@ -8,17 +8,17 @@
     display: flex;
     justify-content: space-around;
     gap: 1.25rem;
-    padding: 1.25rem;
-    padding-bottom: 6.25rem;
+    padding: 2rem 1.5rem 3rem 1.5rem;
+    padding-bottom: 3rem;
 }
 
 @media screen and (max-width: 480px) {
     .amount-wrapper{
-        display: block;
-        padding: 0 3rem 0rem 3rem;
-    }
-    .statsGrid{
-        margin: 1.5rem 0rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        padding: 1.5rem;
+
     }
 }
 @media screen and (min-width: 481px) and (max-width: 768px){

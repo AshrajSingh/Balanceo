@@ -74,7 +74,7 @@
   padding: 24px 48px;
   display: flex;
   flex-direction: column;
-  min-width: 210px;
+  min-width: 200px;
   margin-right: 28px;
   margin-bottom: 2rem;
 }
@@ -322,6 +322,7 @@
 
   .title {
     padding-left: 1.5rem;
+    margin: -3rem 0 1.5rem 0;
   }
 
   .walletImg {
@@ -330,12 +331,9 @@
 
   .incomeSummary,
   .expenseSummary {
-    margin-right: 0;
+   margin: 2rem 0.6rem;
   }
 
-  /* .incomeGraph{
-    display: contents;
-  } */
   .expenseItem,
   .incomeItem {
     padding: 1rem;
@@ -354,10 +352,6 @@
 
   .incomeGraph {
     margin: 3rem 1rem;
-  }
-
-  .subSection {
-    margin: 0 1rem;
   }
 
   .incomeItem,

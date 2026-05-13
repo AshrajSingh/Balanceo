@@ -10,6 +10,7 @@ import { authAtom } from "../store/userAtom";
 import { useEffect } from "react";
 import userIcon from '../images/user-icon.png';
 import Footer from "./Footer";
+import Navbar from "./Navbar";
 
 export default function HomePage() {
   const auth = useRecoilValue(authAtom)
@@ -50,26 +51,7 @@ export default function HomePage() {
 
   return (
     <div className="home-container">
-      {/* Header */}
-      {/* ── NAVBAR ─────────────────────────────────────────────────────── */}
-      <header className="pp-nav">
-        <span className="pp-nav-logo" onClick={() => navigate("/")}>BALANCEO</span>
-        <nav className="pp-nav-links">
-          {["Home", "Dashboard", "Income", "Expense"].map((item) => {
-            const path = item === "Home" ? "/" : `/${item.toLowerCase()}Page`
-            return (
-              <span
-                key={item}
-                className={`pp-nav-item ${isActive(path) ? "pp-nav-active" : ""}`}
-                onClick={() => navigate(path)}
-              >
-                {item}
-              </span>
-            )
-          })}
-          <span className="pp-nav-item" onClick={() => navigate('/userProfile')}>Account</span>
-        </nav>
-      </header>
+      <Navbar />
 
       {/* Main split content */}
       <div className="home-content">

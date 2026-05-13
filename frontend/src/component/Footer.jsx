@@ -14,7 +14,7 @@ export default function Footer() {
     return (
         <>
             {/* Footer */}
-            <footer className={"home-footer"}>
+            <footer className={"footer"}>
                 <div className={"footerInfo"}>
 
                     {auth.isLoggedIn ? (

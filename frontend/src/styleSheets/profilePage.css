@@ -40,60 +40,6 @@
 }
 
 /* ── NAVBAR ───────────────────────────────────────────────── */
-.pp-nav {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0 3.5rem;
-  height: 68px;
-  background: #101013;
-  border-bottom: 1px solid var(--pp-border);
-  position: sticky;
-  top: 0;
-  z-index: 100;
-}
-
-.pp-nav-logo {
-  font-family: var(--ff-display);
-  font-size: 1.35rem;
-  font-weight: 700;
-  letter-spacing: 4px;
-  color: var(--pp-white);
-  cursor: pointer;
-}
-
-.pp-nav-links {
-  display: flex;
-  align-items: center;
-  gap: 2.5rem;
-}
-
-.pp-nav-item {
-  font-family: var(--ff-body);
-  font-size: 0.9rem;
-  color: var(--pp-muted);
-  cursor: pointer;
-  transition: color 0.2s;
-  position: relative;
-}
-
-.pp-nav-item:hover {
-  color: var(--pp-white);
-}
-
-.pp-nav-active {
-  color: var(--pp-teal) !important;
-}
-
-.pp-nav-active::after {
-  content: '';
-  position: absolute;
-  bottom: -24px;
-  left: 0;
-  right: 0;
-  height: 2px;
-  background: var(--pp-teal);
-}
 
 /* ── MAIN WRAPPER ─────────────────────────────────────────── */
 .pp-main {
@@ -270,6 +216,7 @@
   border: 1px solid var(--pp-border);
   border-radius: 10px;
   overflow: hidden;
+  width: 100%;
 }
 
 .pp-stat-bar {
@@ -702,7 +649,10 @@
 /* Small mobile (≤ 480px) */
 @media (max-width: 480px) {
   .pp-nav {
-    padding: 0 1rem;
+    padding: 0 0.55rem;
+  }
+  .pp-nav-logo{
+    font-size: 0.9rem;
   }
 
   .pp-nav-links {
@@ -720,14 +670,17 @@
   }
 
   .pp-main {
-    padding: 1rem 1rem 2rem;
+    padding: 0;
     gap: 1rem;
+    align-items: center;
   }
 
   .pp-hero-card {
+    width: 80%;
     flex-direction: column;
     align-items: flex-start;
-    padding: 1.25rem 1.25rem 1.25rem 0;
+    padding: 1rem;
+    margin: 2rem auto;
     gap: 1rem;
   }
 
@@ -743,12 +696,12 @@
     flex-direction: column;
     align-items: flex-start;
     gap: 0.85rem;
-    padding-left: 0.75rem;
+    /* padding-left: 0.75rem; */
   }
 
   .pp-avatar {
-    width: 80px;
-    height: 80px;
+    width: 3.5rem;
+    height: 3.5rem;
   }
 
   .pp-avatar-initial {
@@ -766,11 +719,11 @@
   .pp-hero-stats {
     min-width: unset;
     width: 100%;
-    padding: 0 0.75rem;
   }
 
   .pp-row {
     grid-template-columns: 1fr;
+    width: 95%;
   }
 
   .pp-pie-wrap {
@@ -780,6 +733,8 @@
 
   .pp-actions {
     grid-template-columns: 1fr;
+    width: 94%;
+    margin: 1rem auto;
   }
 
   .pp-toggle-btn {
@@ -788,7 +743,14 @@
   }
 
   .pp-card {
-    padding: 1.1rem 1.1rem;
+    padding: 1.75rem;
+        width: 75%;
+  }
+  .pp-chart-pie{
+    width: 81% !important;
+  }
+  .pp-chart-monthly{
+    width: 81% !important;
   }
 
   .pp-footer {

@@ -13,6 +13,7 @@ import { toast } from "react-hot-toast";
 import SignOutConfirm from "./signOutConfirm.jsx";
 // @ts-ignore
 import { useResetData } from "../hooks/logoutHook.js";
+import Navbar from "./Navbar.js";
 
 
 // ── Custom Tooltip ─────────────────────────────────────────────────────────────
@@ -129,23 +130,7 @@ export default function ProfilePage() {
 
   return (
     <div className="pp-root">
-
-      {/* ── NAVBAR ─────────────────────────────────────────────────────── */}
-      <header className="pp-nav">
-        <span className="pp-nav-logo" onClick={() => navigate("/")}>BALANCEO</span>
-        <nav className="pp-nav-links">
-          {["Home", "Dashboard", "Income", "Expense"].map((item) => (
-            <span
-              key={item}
-              className="pp-nav-item"
-              onClick={() => navigate(item === "Home" ? "/" : `/${item.toLowerCase()}Page`)}
-            >
-              {item}
-            </span>
-          ))}
-          <span className="pp-nav-item pp-nav-active">Account</span>
-        </nav>
-      </header>
+      <Navbar />
 
       <main className="pp-main">
 

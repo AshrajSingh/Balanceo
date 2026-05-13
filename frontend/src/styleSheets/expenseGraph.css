@@ -1,5 +1,5 @@
 .expenseGraph {
-    /* margin: 3rem 0 3rem 0rem; */
+    /* margin: 2rem 0; */
     flex: 1 1 50%;
 
 }
@@ -20,7 +20,7 @@
 @media screen and (max-width: 480px) {
     .expenseGraph2 {
         display: block;
-        margin: 3rem 1rem;
+        margin: 1rem 1rem;
     }
 
     .expenseGraph {

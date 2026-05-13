@@ -13,6 +13,7 @@ import "../styleSheets/homePage.css"
 import SignOutConfirm from "./signOutConfirm";
 import { useTotalIncome } from "../hooks/totalIncomeHook";
 import Footer from "./Footer";
+import Navbar from "./Navbar";
 
 const IncomePage = () => {
   const [data, setData] = useRecoilState(incomeAtom)
@@ -90,25 +91,7 @@ const IncomePage = () => {
 
   return (
     <div className={"container"}>
-     {/* ── NAVBAR ─────────────────────────────────────────────────────── */}
-      <header className="pp-nav">
-        <span className="pp-nav-logo" onClick={() => navigate("/")}>BALANCEO</span>
-        <nav className="pp-nav-links">
-          {["Home", "Dashboard", "Income", "Expense"].map((item) => {
-            const path = item === "Home" ? "/" : `/${item.toLowerCase()}Page`
-            return (
-              <span
-                key={item}
-                className={`pp-nav-item ${isActive(path) ? "pp-nav-active" : ""}`}
-                onClick={() => navigate(path)}
-              >
-                {item}
-              </span>
-            )
-          })}
-          <span className="pp-nav-item" onClick={() => navigate('/userProfile')}>Account</span>
-        </nav>
-      </header>
+     <Navbar />
       <main>
         <section className={"section"}>
           <div className="subSection">
@@ -149,12 +132,12 @@ const IncomePage = () => {
                 <XAxis
                   dataKey="name"
                   axisLine={false}
-                  tickLine={false}
+                  tickLine={true}
                   tick={{ fill: '#ffffff', fontSize: 12 }}
                 />
                 <YAxis
                   axisLine={false}
-                  tickLine={false}
+                  tickLine={true}
                   tick={{ fill: '#ffffff', fontSize: 12 }}
                 />
                 <Tooltip

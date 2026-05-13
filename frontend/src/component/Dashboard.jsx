@@ -19,6 +19,7 @@ import { useTotalExpense } from "../hooks/totalExpenseHook.js";
 import { useTotalBalance } from "../hooks/totalBalanceHook.js";
 import userIcon from '../images/user-icon.png'
 import Footer from "./Footer.jsx";
+import Navbar from "./Navbar.tsx";
 
 
 // display this page when user is succesfully signed in/loggend in 
@@ -59,41 +60,23 @@ export default function Dashboard() {
 
     return <div className="dashboard">
         <div className="container">
-            {/* ── NAVBAR ─────────────────────────────────────────────────────── */}
-            <header className="pp-nav">
-                <span className="pp-nav-logo" onClick={() => navigate("/")}>BALANCEO</span>
-                <nav className="pp-nav-links">
-                    {["Home", "Dashboard", "Income", "Expense"].map((item) => {
-                        const path = item === "Home" ? "/" : `/${item.toLowerCase()}Page`
-                        return (
-                            <span
-                                key={item}
-                                className={`pp-nav-item ${isActive(path) ? "pp-nav-active" : ""}`}
-                                onClick={() => navigate(path)}
-                            >
-                                {item}
-                            </span>
-                        )
-                    })}
-                    <span className="pp-nav-item" onClick={() => navigate('/userProfile')}>Account</span>
-                </nav>
-            </header>
+            <Navbar />
             <AmountWrapper>
-                <div className="pp-stat-pill pp-stat-income" style={{width: '30%', height: '4.5rem'}}>
+                <div className="pp-stat-pill pp-stat-income">
                     <div className="pp-stat-bar pp-stat-bar-teal" />
                     <div className="pp-stat-content">
                         <span className="pp-stat-label" style={{fontSize: '0.85rem'}}>TOTAL INCOME</span>
                         <span className="pp-stat-value pp-teal">+{total_income}</span>
                     </div>
                 </div>
-                <div className="pp-stat-pill pp-stat-expense" style={{width: '30%', height: '4.5rem'}}>
+                <div className="pp-stat-pill pp-stat-expense">
                     <div className="pp-stat-bar pp-stat-bar-red" />
                     <div className="pp-stat-content">
                         <span className="pp-stat-label" style={{fontSize: '0.85rem'}}>TOTAL EXPENSE</span>
                         <span className="pp-stat-value pp-red">-{total_expense}</span>
                     </div>
                 </div>
-                <div className="pp-stat-pill pp-stat-balance" style={{width: '30%', height: '4.5rem'}}>
+                <div className="pp-stat-pill pp-stat-balance">
                     <div className="pp-stat-bar pp-stat-bar-blue" />
                     <div className="pp-stat-content">
                         <span className="pp-stat-label" style={{fontSize: '0.85rem'}}>NET BALANCE</span>

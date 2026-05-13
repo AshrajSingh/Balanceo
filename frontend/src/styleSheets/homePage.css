@@ -235,17 +235,13 @@
     margin: 1rem 1.5rem;
   }
 
-  .home-footer {
-    padding-top: 1rem;
-  }
-
   .home-beta {
     padding: 1rem 0.5rem;
   }
 
   .footerInfo {
     flex-direction: column-reverse;
-    margin: 10rem 1rem 10rem 1rem;
+    margin: 10rem 1rem 4rem 1rem;
   }
 
   .contact p {

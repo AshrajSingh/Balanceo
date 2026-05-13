@@ -1,9 +1,10 @@
-.home-footer {
+.footer {
     position: relative;
     /* padding: 0 2rem; */
     z-index: 1;
     text-align: left;
     background: #1c1c1f;
+    width: 100%;
 }
 
 
@@ -153,4 +154,54 @@
 
 .footer-tagline {
     flex: 1;
+}
+
+/* ----------------------------------------------------------------------- */
+/* ---------------------------RESPONSIVE DESIGN--------------------------- */
+/* ----------------------------------------------------------------------- */
+
+@media screen and (max-width: 480px) {
+    .footerInfo {
+        flex-direction: column;
+        gap: 1.5rem;
+        padding: 0 1rem;
+        text-align: left;
+    }
+
+    .navigations li {
+        font-size: 0.8rem;
+    }
+
+    .navigations,
+    .contact,
+    .snapshot {
+        text-align: left;
+    }
+
+    .navigations h4 {
+        font-size: 0.7rem;
+    }
+
+    .contact h4 {
+        font-size: 0.7rem;
+    }
+
+    .snapshot h4 {
+        font-size: 0.7rem;
+    }
+
+    .snapshot h1 {
+        font-size: 0.8rem;
+    }
+
+    .snapshot h1 span {
+        margin: 0rem;
+    }
+
+    .footer-content h1 {
+        font-size: 7.5vw;
+    }
+    .footer-word {
+     display: none;
+    }
 }

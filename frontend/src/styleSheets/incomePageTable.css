@@ -74,6 +74,12 @@
     .incomeTable{
         width: 90%;
     }
+    .incomeTable table tbody tr td{
+        padding: 0.6rem;
+    }
+    .incomeTable table{
+        margin: 0.5rem;
+    }
 }
 
 @media (max-width: 768px){
