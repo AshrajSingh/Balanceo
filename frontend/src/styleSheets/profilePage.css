@@ -7,26 +7,26 @@
 
 /* ── CSS Variables ────────────────────────────────────────── */
 :root {
-  --pp-bg:       #09090b;
-  --pp-card:     #161618;
-  --pp-card2:    #1c1c1f;
-  --pp-accent:   #252528;
-  --pp-border:   #2a2a30;
-  --pp-border2:  #1e1e22;
-  --pp-teal:     #00c49f;
-  --pp-red:      #ff4d4d;
-  --pp-blue:     #3464ff;
-  --pp-gold:     #f5c842;
-  --pp-white:    #ffffff;
-  --pp-muted:    #8a8a9a;
-  --pp-dim:      #444455;
-  --pp-teal-bg:  #0d2620;
-  --pp-red-bg:   #1a0808;
-  --pp-blue-bg:  #0a1230;
-  --ff-display:  'Bricolage Grotesque', sans-serif;
-  --ff-body:     'Instrument Sans', sans-serif;
-  --ff-mono:     'JetBrains Mono', monospace;
-  --ff-work:     'Work Sans', sans-serif;
+  --pp-bg: #09090b;
+  --pp-card: #161618;
+  --pp-card2: #1c1c1f;
+  --pp-accent: #252528;
+  --pp-border: #2a2a30;
+  --pp-border2: #1e1e22;
+  --pp-teal: #00c49f;
+  --pp-red: #ff4d4d;
+  --pp-blue: #3464ff;
+  --pp-gold: #f5c842;
+  --pp-white: #ffffff;
+  --pp-muted: #8a8a9a;
+  --pp-dim: #444455;
+  --pp-teal-bg: #0d2620;
+  --pp-red-bg: #1a0808;
+  --pp-blue-bg: #0a1230;
+  --ff-display: 'Bricolage Grotesque', sans-serif;
+  --ff-body: 'Instrument Sans', sans-serif;
+  --ff-mono: 'JetBrains Mono', monospace;
+  --ff-work: 'Work Sans', sans-serif;
 }
 
 /* ── Reset / Base ─────────────────────────────────────────── */
@@ -224,9 +224,17 @@
   flex-shrink: 0;
 }
 
-.pp-stat-bar-teal  { background: var(--pp-teal); }
-.pp-stat-bar-red   { background: var(--pp-red);  }
-.pp-stat-bar-blue  { background: var(--pp-blue); }
+.pp-stat-bar-teal {
+  background: var(--pp-teal);
+}
+
+.pp-stat-bar-red {
+  background: var(--pp-red);
+}
+
+.pp-stat-bar-blue {
+  background: var(--pp-blue);
+}
 
 .pp-stat-content {
   display: flex;
@@ -248,9 +256,17 @@
   font-weight: 700;
 }
 
-.pp-teal  { color: var(--pp-teal); }
-.pp-red   { color: var(--pp-red);  }
-.pp-blue  { color: #a0cfff;        }
+.pp-teal {
+  color: var(--pp-teal);
+}
+
+.pp-red {
+  color: var(--pp-red);
+}
+
+.pp-blue {
+  color: #a0cfff;
+}
 
 /* ── TOGGLE ───────────────────────────────────────────────── */
 .pp-toggle-wrap {
@@ -651,7 +667,8 @@
   .pp-nav {
     padding: 0 0.55rem;
   }
-  .pp-nav-logo{
+
+  .pp-nav-logo {
     font-size: 0.9rem;
   }
 
@@ -744,12 +761,14 @@
 
   .pp-card {
     padding: 1.75rem;
-        width: 75%;
+    width: 75%;
   }
-  .pp-chart-pie{
+
+  .pp-chart-pie {
     width: 81% !important;
   }
-  .pp-chart-monthly{
+
+  .pp-chart-monthly {
     width: 81% !important;
   }
 
