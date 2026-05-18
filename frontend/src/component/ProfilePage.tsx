@@ -14,9 +14,6 @@ import SignOutConfirm from "./signOutConfirm.jsx";
 // @ts-ignore
 import { useResetData } from "../hooks/logoutHook.js";
 import Navbar from "./Navbar.js";
-// @ts-ignore
-import Footer from './Footer.jsx';
-
 
 // ── Custom Tooltip ─────────────────────────────────────────────────────────────
 interface TooltipData {
@@ -294,7 +291,7 @@ export default function ProfilePage() {
               <span className="pp-card-title">MONTHLY {view.toUpperCase()}</span>
             </div>
             <ResponsiveContainer width="100%" height={220}>
-              <LineChart data={monthlyData ?? []} margin={{ top: 16, right: 24, left: 0, bottom: 8 }}>
+              <LineChart data={monthlyData ?? []} margin={{ top: 16, right: 24, left: 8, bottom: 0 }}>
                 <defs>
                   <linearGradient id="monthlyGrad" x1="0" y1="0" x2="0" y2="1">
                     <stop offset="0%" stopColor="#3464ff" stopOpacity={0.18} />

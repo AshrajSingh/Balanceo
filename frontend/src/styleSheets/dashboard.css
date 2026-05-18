@@ -57,36 +57,7 @@
 /* Tablets (769px - 1024px) */
 @media (min-width: 769px) and (max-width: 1024px) {
   
-  .footerInfo {
-    gap: 1.5rem;
-  }
-  
-  .contact {
-    flex: 40%;
-    margin: 2.5rem 0rem;
-  }
-  
-  .footer-about {
-    flex: 60%;
-    margin: 2.5rem 0rem;
-    letter-spacing: 0.08rem;
-    line-height: 1.3rem;
-  }
-  
-  .contact h4 {
-    font-size: 0.95rem;
-    margin-bottom: 1.5rem;
-  }
-  
-  .footer-about h3 {
-    font-size: 1.1rem;
-    margin-bottom: 1.5rem;
-  }
-  
-  .footer-word {
-    font-size: 12vw;
-  }
-  
+ 
 }
 
 /* Small Mobile (320px - 480px) */

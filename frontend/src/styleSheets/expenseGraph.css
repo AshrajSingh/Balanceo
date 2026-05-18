@@ -76,7 +76,7 @@
     }
 
     .recharts-wrapper {
-        width: 50vw !important;
+        /* width: 61.5vw; */
         height: 54vh ;
     }
 }

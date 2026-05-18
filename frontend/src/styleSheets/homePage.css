@@ -298,13 +298,13 @@
   }
 
   .home-body {
-    margin: auto 1rem;
+    margin: auto 1rem 3rem 1rem;
   }
 
   .left-body,
   .right-body {
     width: 50%;
-    margin: auto 0rem;
+    margin: 0 0rem;
     text-align: center;
   }
 
@@ -316,63 +316,6 @@
     width: 70%;
   }
 
-  .footerInfo {
-    margin: 8rem 5rem 5rem 5rem;
-
-  }
-
-  .footer-word {
-    left: 7%;
-    font-size: 11vw;
-  }
-
-  .navigations {
-    text-align: left;
-  }
-
-  .contact {
-    text-align: left;
-  }
-
-  .contact h4 {
-    text-align: left;
-  }
-
-  .contact p {
-    font-size: small;
-  }
-
-  .contact a {
-    font-size: small;
-    margin-left: 0rem;
-  }
-
-  .contact span {
-    text-align: center;
-    font-size: medium;
-  }
-
-  .contact span a {
-    margin-top: 0.5rem;
-  }
-
-  .footer-about {
-    text-align: justify;
-  }
-
-  .footer-about span {
-    font-size: small;
-  }
-
-  .footer-word {
-    left: 7%;
-    font-size: 11vw;
-  }
-
-  .footer-content h1 {
-    font-size: 2.5vw;
-    margin-bottom: 4.15rem;
-  }
 }
 
 /* Large laptops and desktops (1025px to 1200px) */

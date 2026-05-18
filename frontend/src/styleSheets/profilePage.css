@@ -44,7 +44,7 @@
 /* ── MAIN WRAPPER ─────────────────────────────────────────── */
 .pp-main {
   flex: 1;
-  max-width: 1320px;
+  /* max-width: 1320px; */
   width: 100%;
   margin: 0 auto;
   padding: 2rem 3.5rem 3rem;
@@ -555,38 +555,132 @@
 }
 
 /* ── RESPONSIVENESS ───────────────────────────────────────── */
+/* Extra large screens (1201px and above) */
+@media screen and (min-width: 1337px) {
+  .pp-main{
+    padding: 1rem 0;
+    /* margin: auto 1rem; */
+    width: 97%;
+  }
+}
 
 /* Tablets (769px – 1024px) */
 @media (min-width: 769px) and (max-width: 1024px) {
+
   .pp-main {
-    padding: 1.5rem 2rem 2.5rem;
+    padding: 1.5rem 0;
+    width: 95%;
+    gap: 1.25rem;
   }
 
   .pp-nav {
-    padding: 0 2rem;
+    padding: 0 1.5rem;
   }
 
-  .pp-hero-card {
-    flex-wrap: wrap;
+  .pp-nav-links {
     gap: 1.5rem;
-    padding: 1.75rem 1.75rem 1.75rem 0;
   }
 
-  .pp-hero-stats {
-    min-width: 100%;
+  .pp-nav-item {
+    font-size: 0.85rem;
+  }
+
+  /* hero card — stack left block and stats vertically */
+  .pp-hero-card {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 1.75rem 1.75rem 1.75rem 0;
+    gap: 1.5rem;
+    min-height: unset;
+  }
+
+  .pp-hero-accent-bar {
+    height: 4px;
+    width: 100%;
+    align-self: unset;
+    margin-right: 0;
+    margin-bottom: 0;
+    border-radius: 2px 2px 0 0;
+  }
+
+  .pp-hero-left {
     flex-direction: row;
-    padding-left: 2rem;
+    align-items: center;
+    gap: 1.5rem;
+    width: 100%;
+    padding-left: 1.5rem;
   }
 
   .pp-hero-divider {
     display: none;
   }
 
+  /* stats — horizontal row, each pill takes equal space */
+  .pp-hero-stats {
+    width: 100%;
+    min-width: unset;
+    flex-direction: row;
+    gap: 0.75rem;
+    padding: 0 1.5rem;
+  }
+
   .pp-stat-pill {
     flex: 1;
   }
-}
 
+  .pp-stat-value {
+    font-size: 0.85rem;
+  }
+
+  .pp-username {
+    font-size: 1.75rem;
+  }
+
+  /* pie + monthly — stay side by side but shrink */
+  .pp-row {
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+
+  .pp-pie-wrap {
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  /* table — reduce padding so it fits */
+  .pp-table th {
+    font-size: 0.6rem;
+    padding: 0 0.5rem 0.75rem 0;
+  }
+
+  .pp-table td {
+    padding: 0.65rem 0.5rem 0.65rem 0;
+    font-size: 0.85rem;
+  }
+
+  .pp-td-amount {
+    font-size: 0.78rem;
+  }
+
+  .pp-category-pill {
+    font-size: 0.62rem;
+    padding: 0.15rem 0.5rem;
+  }
+
+  /* actions stay side by side */
+  .pp-actions {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .pp-footer {
+    padding: 1rem 1.5rem;
+  }
+
+  .pp-footer-inner {
+    padding: 0 1.5rem;
+  }
+}
 /* Mobile (481px – 768px) */
 @media (min-width: 481px) and (max-width: 768px) {
   .pp-nav {

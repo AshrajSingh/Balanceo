@@ -14,7 +14,7 @@ export default function ExpenseTable() {
 
     return <div style={{ flex: '50%' }}>
         <TableWrapper>
-            <div style={{display: 'flex', justifyContent: 'space-between', margin: '1rem 0 2rem 0px'}}>
+            <div style={{display: 'flex', justifyContent: 'space-between', margin: '0rem 0 1rem 0px'}}>
             <p>Expense Sources</p> <button className="view-toggle-btn" onClick={() => navigate("/expensePage")}>See all</button>
             </div>
             <table>

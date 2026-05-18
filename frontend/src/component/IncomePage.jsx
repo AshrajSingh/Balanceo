@@ -123,8 +123,8 @@ const IncomePage = () => {
                   }))}
                 margin={{
                   top: 20,
-                  right: 30,
-                  left: 20,
+                  right: 10,
+                  left: 5,
                   bottom: 5,
                 }}
               >
