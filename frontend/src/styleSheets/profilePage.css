@@ -557,7 +557,7 @@
 /* ── RESPONSIVENESS ───────────────────────────────────────── */
 /* Extra large screens (1201px and above) */
 @media screen and (min-width: 1337px) {
-  .pp-main{
+  .pp-main {
     padding: 1rem 0;
     /* margin: auto 1rem; */
     width: 97%;
@@ -681,6 +681,7 @@
     padding: 0 1.5rem;
   }
 }
+
 /* Mobile (481px – 768px) */
 @media (min-width: 481px) and (max-width: 768px) {
   .pp-nav {

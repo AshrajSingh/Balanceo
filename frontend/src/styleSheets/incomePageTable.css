@@ -70,20 +70,22 @@
     box-shadow: 0 0 0.9375rem #3a3b3c, 0 0 1.875rem #131313;
 }
 
-@media screen and (max-width: 480px){
-    .incomeTable{
+@media screen and (max-width: 480px) {
+    .incomeTable {
         width: 90%;
     }
-    .incomeTable table tbody tr td{
+
+    .incomeTable table tbody tr td {
         padding: 0.6rem;
     }
-    .incomeTable table{
+
+    .incomeTable table {
         margin: 0.5rem;
     }
 }
 
-@media (max-width: 768px){
-    .incomeTable{
+@media (max-width: 768px) {
+    .incomeTable {
         width: 100%;
         padding: 2rem 0;
     }

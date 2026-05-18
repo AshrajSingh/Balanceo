@@ -13,18 +13,18 @@
 
     .recharts-responsive-container {
         width: 100% !important;
-        height: 100vw ;
+        height: 100vw;
     }
 
     .recharts-wrapper {
-        width: 100vw ;
-        height: 100vw ;
+        width: 100vw;
+        height: 100vw;
     }
 }
 
 @media (min-width: 769px) and (max-width: 1024px) {
     .recharts-responsive-container {
         width: 90% !important;
-        height: 60vh ;
+        height: 60vh;
     }
 }

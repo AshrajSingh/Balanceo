@@ -30,12 +30,12 @@
 
     .recharts-responsive-container {
         width: 100% !important;
-        height: 100vw ;
+        height: 100vw;
     }
- 
+
     .recharts-wrapper {
-        width: 100vw ;
-        height: 100vw ;
+        width: 100vw;
+        height: 100vw;
     }
 }
 
@@ -53,6 +53,7 @@
     .recharts-responsive-container {
         width: 100% !important;
     }
+
     /* .recharts-wrapper{
         width: 71vw !important;
     } */
@@ -71,12 +72,12 @@
 
     .recharts-responsive-container {
         width: 100% !important;
-        height: 53vh ;
+        height: 53vh;
         /* margin-bottom: 2rem; */
     }
 
     .recharts-wrapper {
         /* width: 61.5vw; */
-        height: 54vh ;
+        height: 54vh;
     }
 }

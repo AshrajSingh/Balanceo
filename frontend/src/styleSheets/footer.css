@@ -351,14 +351,16 @@
     }
 }
 
-@media (min-width: 769px) and (max-width: 1024px){
-    .footerInfo{
+@media (min-width: 769px) and (max-width: 1024px) {
+    .footerInfo {
         padding-left: 2rem;
     }
+
     .snapshot li {
         width: 80%;
     }
-    .snapshot li span{
+
+    .snapshot li span {
         margin-left: 1rem;
     }
 }

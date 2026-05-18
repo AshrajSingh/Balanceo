@@ -191,7 +191,7 @@ body {
     display: block;
     align-content: center;
     height: 100vh;
-        background: linear-gradient(135deg, #1f1f1f 0%, #0a0a0a 100%);
+    background: linear-gradient(135deg, #1f1f1f 0%, #0a0a0a 100%);
 
   }
 
@@ -204,7 +204,8 @@ body {
     border-radius: 1.5rem;
     justify-content: center;
   }
-  .signin-box{
+
+  .signin-box {
     width: 90vw;
   }
 
@@ -217,13 +218,14 @@ body {
     font-size: 1rem;
     padding: 0.75rem;
   }
-  .login-input{
+
+  .login-input {
     width: 90%;
   }
 
   .flip-card {
     width: 100%;
-    height:max-content;
+    height: max-content;
     /* min-height: 25rem; */
   }
 }
