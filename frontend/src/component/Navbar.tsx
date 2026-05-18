@@ -28,14 +28,14 @@ export default function Navbar() {
                         return (
                             <span
                                 key={item}
-                                className={`nav-item ${isActive(path) ? "pp-nav-active" : ""}`}
+                                className={`nav-item ${isActive(path) ? "nav-active" : ""}`}
                                 onClick={() => navigate(path)}
                             >
                                 {item}
                             </span>
                         )
                     })}
-                    <span className="nav-item" onClick={() => navigate('/userProfile')}>Account</span>
+                    <span className={`nav-item ${isActive('/userProfile') ? "nav-active" : ""}`} onClick={() => navigate('/userProfile')}>Account</span>
                 </nav>
 
                 {/* MOBILE MENU ICON */}

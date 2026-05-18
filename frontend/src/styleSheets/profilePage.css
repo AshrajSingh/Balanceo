@@ -519,7 +519,7 @@
 /* ── FOOTER ───────────────────────────────────────────────── */
 .pp-footer {
   border-top: 1px solid #1e1e22;
-  padding: 1.5rem 3.5rem;
+  padding: 1rem 0;
   margin-top: auto;
 }
 
@@ -602,15 +602,16 @@
   }
 
   .pp-main {
-    padding: 1.25rem 1.25rem 2rem;
+    padding: 1rem 0;
     gap: 1.25rem;
+    width: 95%;
   }
 
   .pp-hero-card {
     flex-direction: column;
     align-items: flex-start;
     padding: 1.5rem 1.5rem 1.5rem 0;
-    gap: 1.25rem;
+    gap: 3rem;
   }
 
   .pp-hero-accent-bar {
@@ -623,9 +624,10 @@
   }
 
   .pp-hero-left {
-    flex-direction: column;
+    flex-direction: row;
+    width: 100%;
     align-items: flex-start;
-    gap: 1rem;
+    gap: 4rem;
     padding-left: 1rem;
   }
 
@@ -637,13 +639,10 @@
     width: 100%;
     min-width: unset;
     padding: 0 1rem;
+    flex-direction: row;
   }
 
   .pp-row {
-    grid-template-columns: 1fr;
-  }
-
-  .pp-actions {
     grid-template-columns: 1fr;
   }
 
@@ -655,11 +654,6 @@
     padding: 1.25rem;
   }
 
-  .pp-footer-inner {
-    flex-direction: column;
-    gap: 0.5rem;
-    text-align: center;
-  }
 }
 
 /* Small mobile (≤ 480px) */

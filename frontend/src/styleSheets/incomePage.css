@@ -331,7 +331,7 @@
 
   .incomeSummary,
   .expenseSummary {
-   margin: 2rem 0.6rem;
+    margin: 2rem 0.6rem;
   }
 
   .expenseItem,
@@ -344,10 +344,15 @@
   }
 }
 
-@media (max-width: 768px) {
+@media screen and (min-width: 481px) and (max-width: 768px) {
   .section {
     gap: 0;
     display: block;
+  }
+
+  .incomeSummary,
+  .expenseSummary {
+    width: 20%;
   }
 
   .incomeGraph {

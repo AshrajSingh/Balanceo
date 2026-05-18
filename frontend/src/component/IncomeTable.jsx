@@ -13,7 +13,7 @@ export default function IncomeTable() {
     const navigate = useNavigate()
 
 
-    return <div style={{ flex: '50%' }}>
+    return <div style={{ flex: '50%', marginBottom: '4rem' }}>
         <TableWrapper>
             <div style={{display: 'flex', justifyContent: 'space-between', margin: '1rem 0 2rem 0px'}}>
             <p>Income Sources</p> <button className="view-toggle-btn" onClick={() => navigate("/incomePage")}>See all</button>

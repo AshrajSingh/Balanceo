@@ -14,6 +14,8 @@ import SignOutConfirm from "./signOutConfirm.jsx";
 // @ts-ignore
 import { useResetData } from "../hooks/logoutHook.js";
 import Navbar from "./Navbar.js";
+// @ts-ignore
+import Footer from './Footer.jsx';
 
 
 // ── Custom Tooltip ─────────────────────────────────────────────────────────────

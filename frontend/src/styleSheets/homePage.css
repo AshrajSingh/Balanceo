@@ -133,23 +133,6 @@
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
 }
 
-.footer-word {
-  position: absolute;
-  text-align: center;
-  bottom: 0rem;
-  top: 34%;
-  left: 8%;
-  font-size: 11vw;
-  font-weight: 500;
-  color: rgba(255, 255, 255, 0.036);
-  letter-spacing: 0.3em;
-  text-transform: uppercase;
-  z-index: 0;
-  pointer-events: none;
-  user-select: none;
-  margin: 0;
-}
-
 /* mobile devices */
 @media screen and (max-width: 480px) {
 
@@ -294,56 +277,8 @@
 
   .left-body {
     margin: 0rem 4rem 3rem 4rem;
-
   }
 
-  .footer-content h1 {
-    font-size: 2.5vw;
-    margin-bottom: 3.25rem;
-  }
-
-  .footer-content {
-    margin-top: 2rem;
-  }
-
-  .footerInfo {
-    margin: 10rem 3rem 7rem 3rem;
-    flex-direction: row;
-  }
-
-  .footer-word {
-    left: 7%;
-    font-size: 11vw;
-  }
-
-  .navigations {
-    text-align: left;
-  }
-
-  .contact {
-    text-align: left;
-  }
-
-  .contact p {
-    font-size: smaller;
-  }
-
-  .contact a {
-    font-size: smaller;
-    margin-left: 0rem;
-  }
-
-  .contact span {
-    text-align: center;
-  }
-
-  .footer-about {
-    text-align: justify;
-  }
-
-  .footer-about span {
-    font-size: small;
-  }
 }
 
 /* Small laptops (769px to 1024px) */
