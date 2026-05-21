@@ -82,10 +82,10 @@ export default function Footer() {
                 <div className="footer-content">
                     <p className="footer-word">BALANCEO</p>
                     <hr />
-                    <p className="footer-inner" style={{ margin: '1rem auto' }}>
+                    <p className="footer-inner">
                         <span className="footer-logo"> Balanceo </span>
-                        <span className="footer-tagline"> Track every rupee · Finances, Simplified. </span>
                         <span className="footer-copy"> &copy; 2026 BALANCEO. All rights reserved. </span>
+                        <span className="footer-tagline">Finances, Simplified. </span>
                     </p>
                 </div>
             </footer>

@@ -32,28 +32,7 @@
 
 /* Small Laptops (1025px - 1366px) */
 @media (min-width: 1025px) and (max-width: 1366px) {
-  .footerInfo {
-    margin: 7rem 2rem 7rem 3rem;
-    gap: 2rem;
-  }
 
-  .contact {
-    flex: 35%;
-  }
-
-  .footer-about {
-    flex: 55%;
-    letter-spacing: 0.1rem;
-  }
-
-  .contact h4 {
-    font-size: 1rem;
-    margin-bottom: 2rem;
-  }
-
-  .footer-about h3 {
-    font-size: 1.15rem;
-  }
 }
 
 /* Tablets (769px - 1024px) */
@@ -72,54 +51,7 @@
   }
 
   .dashboard button {
-    padding: 0.35rem 0.7rem;
-    font-size: 0.85rem;
-  }
-
-  .footerInfo {
-    flex-direction: column;
-    margin: 3rem 0.8rem 3rem 0.8rem;
-    gap: 0;
-  }
-
-  .contact {
-    flex: 100%;
-    margin: 1.2rem 0rem 0.8rem 0rem;
-    text-align: center;
-    padding: 0 0.5rem;
-  }
-
-  .footer-about {
-    flex: 100%;
-    margin: 0.8rem 0rem 1.2rem 0rem;
-    text-align: center;
-    letter-spacing: 0.02rem;
-    line-height: 1.3rem;
-    font-size: 0.85rem;
-    padding: 0 0.5rem;
-  }
-
-  .contact h4 {
-    font-size: 0.9rem;
-    margin-bottom: 0.8rem;
-  }
-
-  .contact a {
-    margin-left: 0;
-    display: block;
-    margin-top: 0.7rem;
-    font-size: 0.85rem;
-  }
-
-  .footer-about h3 {
-    font-size: 0.95rem;
-    margin-bottom: 0.8rem;
-  }
-
-  .footer-word {
-    font-size: 20vw;
-    letter-spacing: 0.15em;
-    bottom: -1rem;
+    font-size: 0.8rem;
   }
 
   .logo {

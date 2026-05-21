@@ -540,7 +540,7 @@
 }
 
 .pp-footer-tagline {
-  flex: 1;
+  /* flex: 1; */
   text-align: center;
   font-family: var(--ff-body);
   font-size: 0.85rem;
@@ -562,6 +562,19 @@
     /* margin: auto 1rem; */
     width: 97%;
   }
+  .pp-footer-copy,
+  .pp-footer-logo,
+  .pp-footer-tagline {
+    color: var(--pp-muted);
+  }
+  .pp-footer-copy{
+    flex: 1;
+    text-align: center;
+    font-size: 0.75rem;
+  }
+  .pp-footer-tagline{font-size: 1rem;}
+  .pp-footer-logo{font-size: 1.2rem;}
+
 }
 
 /* Tablets (769px – 1024px) */
@@ -680,6 +693,17 @@
   .pp-footer-inner {
     padding: 0 1.5rem;
   }
+
+  .pp-footer-copy {
+    flex: 1;
+    text-align: center;
+  }
+
+  .pp-footer-copy,
+  .pp-footer-logo,
+  .pp-footer-tagline {
+    color: var(--pp-muted);
+  }
 }
 
 /* Mobile (481px – 768px) */
@@ -749,6 +773,16 @@
     padding: 1.25rem;
   }
 
+  .pp-footer-copy {
+    flex: 1;
+    text-align: center;
+  }
+
+  .pp-footer-copy,
+  .pp-footer-logo,
+  .pp-footer-tagline {
+    color: var(--pp-muted);
+  }
 }
 
 /* Small mobile (≤ 480px) */
@@ -829,7 +863,8 @@
 
   .pp-row {
     grid-template-columns: 1fr;
-    width: 95%;
+    width: 100%;
+    justify-items: center;
   }
 
   .pp-pie-wrap {
@@ -849,8 +884,8 @@
   }
 
   .pp-card {
-    padding: 1.75rem;
-    width: 75%;
+    /* padding: 1.75rem; */
+    width: 80%;
   }
 
   .pp-chart-pie {
@@ -869,5 +904,11 @@
     flex-direction: column;
     gap: 0.4rem;
     text-align: center;
+  }
+
+  .pp-footer-copy,
+  .pp-footer-logo,
+  .pp-footer-tagline {
+    color: var(--pp-muted);
   }
 }

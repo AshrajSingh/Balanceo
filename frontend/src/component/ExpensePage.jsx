@@ -105,7 +105,7 @@ const ExpensePage = () => {
             <button className={"newExpenseBtn"} onClick={() => setOpen(true)}>+ New Expense</button>
           </div>
           <div className={"incomeGraph"}>
-            <ResponsiveContainer width="95%" height={360} style={{
+            <ResponsiveContainer width="97%" height={360} style={{
               borderRadius: "10px", backgroundColor: "#1c1c1f", boxShadow: "rgba(0, 0, 0, 0.4) 2px 4px 11px",
             }}
             >
@@ -125,8 +125,8 @@ const ExpensePage = () => {
                   }))}
                 margin={{
                   top: 20,
-                  right: 10,
-                  left: 5,
+                  right: 20,
+                  left: 0,
                   bottom: 5,
                 }}
               >

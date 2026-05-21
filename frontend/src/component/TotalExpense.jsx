@@ -31,12 +31,12 @@ export default function TotalExpense() {
 
 
     return <div>
-        <ResponsiveContainer width="85%" height={320} style={{ borderRadius: '10px', backgroundColor: '#1c1c1f', boxShadow: 'rgba(0, 0, 0, 0.4) 2px 4px 11px' }}>
+        <ResponsiveContainer width="75%" height={320} style={{ borderRadius: '10px', backgroundColor: '#1c1c1f', boxShadow: 'rgba(0, 0, 0, 0.4) 2px 4px 11px' }}>
             <p>Expense</p>
             <PieChart>
                 <Pie
                     data={groupedExpenseData}
-                    cx="47%"
+                    cx="50%"
                     cy="50%"
                     outerRadius={100}
                     dataKey="totalAmount"

@@ -181,20 +181,6 @@
     margin: 1rem 0.3rem;
   }
 
-  .footer-content h1 {
-    font-size: 0.8rem;
-    letter-spacing: 0.2em;
-    margin: 0 0 2.25rem 0;
-  }
-
-  .footer-content {
-    margin: 2rem;
-  }
-
-  .footer-word {
-    margin-bottom: 1rem;
-  }
-
   .reason {
     margin: 1rem;
 
@@ -222,27 +208,6 @@
     padding: 1rem 0.5rem;
   }
 
-  .footerInfo {
-    flex-direction: column-reverse;
-    margin: 10rem 1rem 4rem 1rem;
-  }
-
-  .contact p {
-    font-size: 0.875rem;
-  }
-
-  .contact span {
-    margin-top: 5rem;
-    text-align: center;
-  }
-
-  .contact span a {
-    margin-top: 1rem;
-  }
-
-  .navigations {
-    text-align: center;
-  }
 }
 
 /* Tablets (481px to 768px) */

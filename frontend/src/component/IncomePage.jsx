@@ -106,7 +106,7 @@ const IncomePage = () => {
             <button className={"newIncomeBtn"} onClick={() => setOpen(true)}>+ New Income</button>
           </div>
           <div className="incomeGraph">
-            <ResponsiveContainer width="96%" height={360} style={{ borderRadius: '10px', backgroundColor: '#1c1c1f', boxShadow: 'rgba(0, 0, 0, 0.4) 2px 4px 11px' }}>
+            <ResponsiveContainer width="97%" height={360} style={{ borderRadius: '10px', backgroundColor: '#1c1c1f', boxShadow: 'rgba(0, 0, 0, 0.4) 2px 4px 11px' }}>
               {/* <p>Income Over Time</p> */}
               <LineChart
                 data={isGroupedView ?
@@ -123,8 +123,8 @@ const IncomePage = () => {
                   }))}
                 margin={{
                   top: 20,
-                  right: 10,
-                  left: 5,
+                  right: 20,
+                  left: 0,
                   bottom: 5,
                 }}
               >

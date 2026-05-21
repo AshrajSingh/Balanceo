@@ -374,8 +374,8 @@ export default function ProfilePage() {
       <footer className="pp-footer">
         <div className="pp-footer-inner">
           <span className="pp-footer-logo">BALANCEO</span>
-          <span className="pp-footer-tagline">Finances, Simplified</span>
           <span className="pp-footer-copy">© 2026 Balanceo. All rights reserved.</span>
+          <span className="pp-footer-tagline">Finances, Simplified</span>
         </div>
       </footer>
 
