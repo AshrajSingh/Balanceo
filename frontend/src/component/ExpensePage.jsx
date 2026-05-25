@@ -17,7 +17,6 @@ import Navbar from "./Navbar";
 const ExpensePage = () => {
   const [data, setData] = useRecoilState(expenseAtom);
   const [open, setOpen] = useState(false);
-  const [openSignOut, setOpenSignOut] = useState(true)
   const [isGroupedView, setIsGroupedView] = useRecoilState(isGroupedViewState);
   const groupedExpenseData = useRecoilValue(groupedExpenseState);
   const navigate = useNavigate();
@@ -59,9 +58,11 @@ const ExpensePage = () => {
         expense: expense,
         expenseAmount: Number(expenseAmount),
       };
-      console.log("Payload in expenseTable.jsx: ", payload);
+
       const response = await setUserdata(payload);
       console.log("response from setUserExpense: ", response);
+      toast.success('Expense added successfully!');
+      
       setData((prev) => [...prev, response]);
       localStorage.setItem("expenses", JSON.stringify([...data, response]));
     }
@@ -70,17 +71,6 @@ const ExpensePage = () => {
       toast.error("Failed to add expense!")
     }
 
-  }
-
-  function handleCancel() {
-    setOpenSignOut(false)
-  }
-
-  function handleLogout() {
-    setOpenSignOut(false)
-    resetData();
-    navigate("/", { replace: true });
-    toast.success("Logout successful!")
   }
 
   // Function to check if nav item is active

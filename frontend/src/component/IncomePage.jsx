@@ -31,7 +31,7 @@ const IncomePage = () => {
   const userData = JSON.parse(localStorage.getItem("user") || "{}")
   const user_id = userData?.user_id
 
-  const total_incomes = useTotalIncome().toLocaleString('en-IN', {style: 'currency', currency: 'INR' });
+  const total_incomes = useTotalIncome().toLocaleString('en-IN', { style: 'currency', currency: 'INR' });
   console.log("Income data: ", data)
 
 
@@ -65,8 +65,8 @@ const IncomePage = () => {
     console.log("Payload in incomeTable.jsx: ", payload)
 
     const response = await setUserIncome(payload)
-
     console.log("response from setUserIncome: ", response)
+    toast.success('Expense added successfully!');
 
     setData(prev => [...prev, response])
     localStorage.setItem("incomes", JSON.stringify([...data, response]))
@@ -85,13 +85,13 @@ const IncomePage = () => {
   }
 
   // Function to check if nav item is active
-    const isActive = (path) => {
-        return location.pathname === path;
-    };
+  const isActive = (path) => {
+    return location.pathname === path;
+  };
 
   return (
     <div className={"container"}>
-     <Navbar />
+      <Navbar />
       <main>
         <section className={"section"}>
           <div className="subSection">

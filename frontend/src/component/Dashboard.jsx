@@ -42,9 +42,6 @@ export default function Dashboard() {
         document.body.style.background = "black"
         document.body.style.color = "white"
 
-        // Refresh data when dashboard mounts
-        // refreshData()
-
         return () => {
             document.body.style.display = ""
             document.body.style.background = ""
