@@ -1,6 +1,6 @@
 import express from 'express'
 import { expenseModel } from '../models/expense.js'
-import userAuthentication from '../middlewares/userAuthentication.ts'
+import userAuthentication from '../middlewares/userAuthentication'
 
 const app = express()
 app.use(express.json())

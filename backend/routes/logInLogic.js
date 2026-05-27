@@ -1,6 +1,6 @@
 import express from 'express';
-import { User } from '../models/user.ts';
-import userAuthentication from '../middlewares/userAuthentication.ts';
+import { User } from '../models/user';
+import userAuthentication from '../middlewares/userAuthentication';
 import jwt from 'jsonwebtoken';
 const app = express();
 app.use(express.json());
