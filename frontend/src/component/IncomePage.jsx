@@ -66,7 +66,7 @@ const IncomePage = () => {
 
     const response = await setUserIncome(payload)
     console.log("response from setUserIncome: ", response)
-    toast.success('Expense added successfully!');
+    toast.success('Income added successfully!');
 
     setData(prev => [...prev, response])
     localStorage.setItem("incomes", JSON.stringify([...data, response]))
