@@ -77,7 +77,7 @@ export default function Dashboard() {
                     <div className="pp-stat-bar pp-stat-bar-blue" />
                     <div className="pp-stat-content">
                         <span className="pp-stat-label" style={{fontSize: '0.85rem'}}>NET BALANCE</span>
-                        <span className="pp-stat-value pp-blue">₹{total_balance}</span>
+                        <span className="pp-stat-value pp-blue">{total_balance}</span>
                     </div>
                 </div>
             </AmountWrapper>
