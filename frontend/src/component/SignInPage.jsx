@@ -33,8 +33,8 @@ export default function SignInPage({ onBack }) {
 
     async function registerUser() {
         setIsLoading(true);
-        console.log("Registering user:", userData);
         const userData = setUserdetails()
+        console.log("Registering user:", userData);
 
         try {
             if (!userData.username || !userData.email || !userData.password) {

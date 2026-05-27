@@ -56,6 +56,7 @@ export async function logInUser({ email, password }: LogInPayload) {
         }
         return loginData;
     } catch (error) {
+        console.error("Auth service error:", error);
         throw error
     }
 }

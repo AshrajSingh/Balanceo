@@ -1,5 +1,5 @@
 import express from 'express';
-import { User } from '../models/user';
+import User from '../models/user';
 import userAuthentication from '../middlewares/userAuthentication';
 import jwt from 'jsonwebtoken';
 const app = express();
@@ -10,7 +10,7 @@ const router = express.Router()
 
 router.post('/login', async function (req, res) {
     const { email, password } = req.body;
-
+    console.log("req body", req.body)
 
     try {
         const existingUser = await User.findOne({ email: email })
@@ -35,7 +35,8 @@ router.post('/login', async function (req, res) {
             token: token
         })
     } catch (error) {
-        res.status(400).json({ error })
+        console.error("Login error: ", error)
+        res.status(400).json({ error: String(error) })
     }
 })
 
