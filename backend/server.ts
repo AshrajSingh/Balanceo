@@ -18,6 +18,10 @@ const app = express()
 app.use(express.json())
 app.use(cors(({origin: ['http://localhost:5173', 'https://balanceo-fhz1.onrender.com']})));
 
+app.get('/health', (req, res) => {
+    res.status(200).json({ status: 'ok' })
+})
+
 app.use('/api', logInRoutes)
 app.use('/api', signInRoutes)
 app.use('/api', expensesRoutes)
@@ -38,9 +42,6 @@ app.get('/*path', (req, res) => {
   res.sendFile(path.join(__dirname, 'frontend', 'dist', 'index.html'));
 });
 
-app.get('/health', (req, res) => {
-    res.status(200).json({ status: 'ok' })
-})
 
 
 app.listen(PORT, () => {
