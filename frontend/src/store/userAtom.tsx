@@ -45,35 +45,35 @@ export const expenseAtom = atom<ExpenseItem[]>({
 
             if (!token) return
 
-            if (saved != null) {
-                console.log('expense atom setSelf')
-                setSelf(JSON.parse(saved))
-            }
-            else {
-                fetch(`${apiURL}/expensePage`, {
-                    method: "GET",
-                    headers: {
-                        "Content-Type": "application/json",
-                        "Authorization": `Bearer ${token}`
-                    }
-                }).then(res => res.json())
-                    .then(data => {
-                        const parsed = z.array(ExpenseItemSchema).parse(data);
+            if (!saved) return
 
-                        const realData = parsed.map(items => ({
-                            _id: items._id,
-                            category: items.category,
-                            date: items.date,
-                            expense: items.expense,
-                            expenseAmount: Number(items.expenseAmount)
-                        }))
-                        setSelf(realData)
-                        localStorage.setItem("expenses", JSON.stringify(realData))
-                    })
-                    .catch((err) => console.error("Failed to fetch expenses:", err));
+            console.log('expense atom setSelf')
+            setSelf(JSON.parse(saved))
 
-                onSet((newValue) => localStorage.setItem("expenses", JSON.stringify(newValue)))
-            }
+
+            fetch(`${apiURL}/expensePage`, {
+                method: "GET",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": `Bearer ${token}`
+                }
+            }).then(res => res.json())
+                .then(data => {
+                    const parsed = z.array(ExpenseItemSchema).parse(data);
+
+                    const realData = parsed.map(items => ({
+                        _id: items._id,
+                        category: items.category,
+                        date: items.date,
+                        expense: items.expense,
+                        expenseAmount: Number(items.expenseAmount)
+                    }))
+                    setSelf(realData)
+                    localStorage.setItem("expenses", JSON.stringify(realData))
+                })
+                .catch((err) => console.error("Failed to fetch expenses:", err));
+
+            onSet((newValue) => localStorage.setItem("expenses", JSON.stringify(newValue)))
         }
     ]
 })
@@ -94,36 +94,35 @@ export const incomeAtom = atom<IncomeItem[]>({
 
             if (!token) return
 
-            if (saved != null) {
-                console.log('incomeAtom setSelf')
-                setSelf(JSON.parse(saved))
-            }
-            else {
-                fetch(`${apiURL}/incomePage/income`, {
-                    method: "GET",
-                    headers: {
-                        "Content-Type": "application/json",
-                        "Authorization": `Bearer ${token}`
-                    }
-                }).then(res => res.json())
-                    .then(data => {
-                        const parsed = z.array(IncomeItemSchema).parse(data)
+            if (!saved) return
 
-                        const realData = parsed.map(items => ({
-                            _id: items._id,
-                            category: items.category,
-                            date: items.date,
-                            income: items.income,
-                            incomeAmount: Number(items.incomeAmount)
-                        }))
+            console.log('income setSelf called')
+            setSelf(JSON.parse(saved))
 
-                        setSelf(realData)
-                        localStorage.setItem("incomes", JSON.stringify(realData))
+            fetch(`${apiURL}/incomePage/income`, {
+                method: "GET",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": `Bearer ${token}`
+                }
+            }).then(res => res.json())
+                .then(data => {
+                    const parsed = z.array(IncomeItemSchema).parse(data)
 
-                    }).catch((err) => console.error("Failed to fetch income: ", err))
+                    const realData = parsed.map(items => ({
+                        _id: items._id,
+                        category: items.category,
+                        date: items.date,
+                        income: items.income,
+                        incomeAmount: Number(items.incomeAmount)
+                    }))
 
-                onSet((newValue) => localStorage.setItem("incomes", JSON.stringify(newValue)))
-            }
+                    setSelf(realData)
+                    localStorage.setItem("incomes", JSON.stringify(realData))
+
+                }).catch((err) => console.error("Failed to fetch income: ", err))
+
+            onSet((newValue) => localStorage.setItem("incomes", JSON.stringify(newValue)))
 
         }
     ]
@@ -204,10 +203,10 @@ export function groupTransaction(data: any[], amountKey: string, groupBy: GroupB
                     items: []
                 };
             }
-            
+
             groups[category].items.push(item);
             groups[category].totalAmount += Number(item[amountKey]);
-            
+
             return groups;
         }, {});
         return Object.values(grouped_Data);

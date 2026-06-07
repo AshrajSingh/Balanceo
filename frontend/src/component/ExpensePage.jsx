@@ -13,6 +13,7 @@ import SignOutConfirm from "./signOutConfirm";
 import { useTotalExpense } from "../hooks/totalExpenseHook";
 import Footer from "./Footer";
 import Navbar from "./Navbar";
+import useGenerateColor from "../hooks/generateColor";
 
 const ExpensePage = () => {
   const [data, setData] = useRecoilState(expenseAtom);
@@ -23,10 +24,13 @@ const ExpensePage = () => {
   const categoryRef = useRef("");
   const expenseRef = useRef("");
   const expenseAmountRef = useRef("");
+
   const resetData = useResetData();
+  const { generateExpenseColors } = useGenerateColor()
+
   const userData = JSON.parse(localStorage.getItem("user"));
   const user_id = userData?.user_id;
-  const total_expenses = useTotalExpense().toLocaleString('en-IN', {style: 'currency', currency: 'INR' });
+  const total_expenses = useTotalExpense().toLocaleString('en-IN', { style: 'currency', currency: 'INR' });
 
   useEffect(() => {
     document.body.style.display = "block";
@@ -46,11 +50,14 @@ const ExpensePage = () => {
       const expense = expenseRef.current?.trim().charAt(0).toUpperCase() + expenseRef.current?.trim().slice(1).toLowerCase();
       const expenseAmount = expenseAmountRef.current?.trim();
 
+      console.log("Expense details: ", { category, expense, expenseAmount })
+
       // Check if any field is empty after trimming
       if (!category || !expense || !expenseAmount) {
         toast.error("Please fill all fields");
         return; // Add return to prevent further execution
       }
+
 
       const payload = {
         user_id: user_id,
@@ -59,10 +66,12 @@ const ExpensePage = () => {
         expenseAmount: Number(expenseAmount),
       };
 
+      generateExpenseColors(category)
+
       const response = await setUserdata(payload);
       console.log("response from setUserExpense: ", response);
       toast.success('Expense added successfully!');
-      
+
       setData((prev) => [...prev, response]);
       localStorage.setItem("expenses", JSON.stringify([...data, response]));
     }
@@ -80,7 +89,7 @@ const ExpensePage = () => {
 
   return (
     <div className={"container"}>
-     <Navbar />
+      <Navbar />
       <main>
         <section className={"section"}>
           <div className={"subSection"}>
@@ -165,7 +174,7 @@ const ExpensePage = () => {
         <div>
           {open && (
             <div className={"overlay"}>
-              <div className={"dialog"}>
+              <div className={"dialog"} onKeyDown={(e) => { if (e.key === 'Enter') { saveExpense() } }}>
                 <div className={"title-image"}>
                   <h2 className={"addExpenseTitle"}>
                     Add Expense

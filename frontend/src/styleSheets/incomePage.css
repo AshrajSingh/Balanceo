@@ -67,7 +67,6 @@
 
 .incomeSummary,
 .expenseSummary {
-  /* flex: 20%; */
   background-color: #1c1c1f;
   box-shadow: 0 0.1875rem 0.4375rem rgba(0, 0, 0, 0.4);
   border-radius: 12px;
@@ -77,6 +76,7 @@
   min-width: 200px;
   margin-right: 28px;
   margin-bottom: 2rem;
+  letter-spacing: 0.1rem;
 }
 
 .incomeGraph {
@@ -96,7 +96,7 @@
   font-weight: 500;
   color: rgb(197, 194, 194);
   text-align: left;
-
+  font-family: 'Bricolage Grotesque', sans-serif;
 }
 
 .newIncomeBtn,
@@ -322,7 +322,9 @@
 
   .title {
     padding-left: 1.5rem;
-    margin: -3rem 0 1.5rem 0;
+    font-size: 1.8rem;
+    letter-spacing: 0.1rem;
+    font-weight: 500;
   }
 
   .walletImg {

@@ -3,31 +3,12 @@ import { useRecoilValue } from 'recoil';
 import { expenseAtom, groupedExpenseState } from '../store/userAtom';
 import { useEffect, useState } from 'react';
 
-    function generateRandomColor() {
-        const hue = Math.floor(Math.random() * 360);
-        return `hsl(${hue}, 70%, 50%)`;
-    }
+
 
 export default function TotalExpense() {
     const data = useRecoilValue(expenseAtom)
-    const [colors, setColors] = useState({})
+    const colors = JSON.parse(localStorage.getItem("expense_colors")) || {}
     const groupedExpenseData = useRecoilValue(groupedExpenseState)
-    // localStorage.removeItem("expenseColors") 
-
-    useEffect(() => {
-        const savedColors = JSON.parse(localStorage.getItem("groupedExpenseColors"))
-        const updatedColors = { ...savedColors }
-
-        groupedExpenseData.map((items) => {
-            if (!updatedColors[items.category]) {
-                updatedColors[items.category] = generateRandomColor();
-            }
-        })
-        setColors(updatedColors);
-
-        localStorage.setItem("groupedExpenseColors", JSON.stringify(updatedColors))
-
-    }, [groupedExpenseData])
 
 
     return <div>

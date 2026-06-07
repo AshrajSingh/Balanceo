@@ -14,19 +14,22 @@ import SignOutConfirm from "./signOutConfirm";
 import { useTotalIncome } from "../hooks/totalIncomeHook";
 import Footer from "./Footer";
 import Navbar from "./Navbar";
+import useGenerateColor from "../hooks/generateColor";
 
 const IncomePage = () => {
   const [data, setData] = useRecoilState(incomeAtom)
   const [open, setOpen] = useState(false);
   const [openSignOut, setOpenSignOut] = useState(true)
-
   const [isGroupedView, setIsGroupedView] = useRecoilState(isGroupedViewState)
   const groupedIncomeData = useRecoilValue(groupedIncomeState);
+
   const navigate = useNavigate()
   const categoryRef = useRef("")
   const incomeRef = useRef("")
   const incomeAmountRef = useRef("")
   const resetData = useResetData()
+  const { generateIncomeColors } = useGenerateColor()
+
 
   const userData = JSON.parse(localStorage.getItem("user") || "{}")
   const user_id = userData?.user_id
@@ -61,8 +64,9 @@ const IncomePage = () => {
       income: income,
       incomeAmount: Number(incomeAmount)
     }
-
     console.log("Payload in incomeTable.jsx: ", payload)
+    generateIncomeColors(category)
+
 
     const response = await setUserIncome(payload)
     console.log("response from setUserIncome: ", response)
@@ -174,7 +178,7 @@ const IncomePage = () => {
         <div>
           {open && (
             <div className={"overlay"}>
-              <div className={"dialog"}>
+              <div className={"dialog"} onKeyDown={(e) => { if (e.key === 'Enter') { saveIncome() } }}>
                 <div className="title-image">
                   <h2 className={"addIncomeTitle"}>
                     Add Income
@@ -193,7 +197,7 @@ const IncomePage = () => {
                     Cancel
                   </button>
 
-                  <button className={"save"} onClick={saveIncome}>Save</button>
+                  <button className={"save"} onClick={saveIncome} >Save</button>
                 </div>
               </div>
             </div>

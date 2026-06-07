@@ -4,33 +4,12 @@ import { useEffect, useState } from "react";
 import { groupedIncomeState, incomeAtom } from "../store/userAtom";
 import '../styleSheets/expenseGraph.css'
 
-function generateRandomColor() {
-    const hue = Math.floor(Math.random() * 360);
-    return `hsl(${hue}, 70%, 50%)`;
-}
-
 export default function Income_Graph() {
-    const [colors, setColors] = useState({})
+    const colors = JSON.parse(localStorage.getItem("income_colors")) || {}
     const data = useRecoilValue(incomeAtom)
     const groupedData = useRecoilValue(groupedIncomeState)
     // localStorage.removeItem("incomeColors")
 
-    useEffect(() => {
-        const savedColors = JSON.parse(localStorage.getItem("updatedIncomeColors"))
-        const updatedColors = { ...savedColors }
-
-        groupedData.map((items) => {
-            if (!updatedColors[items.category]) {
-                updatedColors[items.category] = generateRandomColor();
-            }
-
-        })
-        setColors(updatedColors);
-
-
-        localStorage.setItem("updatedIncomeColors", JSON.stringify(updatedColors))
-
-    }, [groupedData])
 
     return <div>
         <ResponsiveContainer width="75%" height={270} style={{ borderRadius: '10px', backgroundColor: '#1c1c1f', boxShadow: 'rgba(0, 0, 0, 0.4) 2px 4px 11px' }}>

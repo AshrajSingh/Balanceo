@@ -57,8 +57,7 @@ export default function SignInPage({ onBack }) {
             const response = await signInUser(userData)
             console.log("signin Response: ", response)
 
-            navigate("/dashboard")
-
+            
             // console.log("signin userId: ", user_id)
             localStorage.setItem("user", JSON.stringify({
                 isLoggedIn: true,
@@ -66,9 +65,10 @@ export default function SignInPage({ onBack }) {
                 user_id: response.user_id,
                 token: response.token
             }))
-
+            
             setAuth({ isLoggedIn: true, isChecked: true, user: userData.email })
-
+            
+            navigate("/dashboard")
             toast.success(response.message || 'User signed in successfully');
 
         } catch (error) {

@@ -8,7 +8,9 @@ const router = express.Router()
 
 router.get("/incomePage/income", userAuthentication, async (req, res) => {
     try {
+        //get all the income of the user
         const existingIncomes = await incomeModel.find({ user_Id: req.user.user_id })
+        console.log('existingIncomes in router: ', existingIncomes)
         res.status(200).json(existingIncomes)
     }
     catch (error) {

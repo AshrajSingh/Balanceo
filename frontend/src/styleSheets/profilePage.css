@@ -217,6 +217,7 @@
   border-radius: 10px;
   overflow: hidden;
   width: 100%;
+  letter-spacing: 0.05rem;
 }
 
 .pp-stat-bar {
@@ -468,8 +469,8 @@
   font-family: var(--ff-body);
   font-size: 0.95rem;
   font-weight: 600;
-  cursor: pointer;
   transition: all 0.2s;
+  cursor: pointer;
 }
 
 .pp-action-signout {
@@ -491,6 +492,37 @@
 .pp-action-edit:hover {
   border-color: var(--pp-muted);
   color: var(--pp-white);
+}
+
+/* custom hover for edit button */
+.edit-custom-hover {
+  position: relative;
+  cursor: not-allowed;
+}
+
+.edit-custom-hover::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  left: 50%;
+  top: 2.5rem;
+  transform: translateX(-50%);
+  white-space: nowrap;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: var(--pp-white);
+  padding: 0.45rem 0.75rem;
+  border-radius: 4rem;
+  font-family: var(--ff-mono);
+  font-size: 0.75rem;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.15s ease;
+  z-index: 10;
+}
+
+.edit-custom-hover:hover::after {
+  opacity: 1;
+  visibility: visible;
 }
 
 /* ── CUSTOM TOOLTIP ───────────────────────────────────────── */
@@ -562,18 +594,26 @@
     /* margin: auto 1rem; */
     width: 97%;
   }
+
   .pp-footer-copy,
   .pp-footer-logo,
   .pp-footer-tagline {
     color: var(--pp-muted);
   }
-  .pp-footer-copy{
+
+  .pp-footer-copy {
     flex: 1;
     text-align: center;
     font-size: 0.75rem;
   }
-  .pp-footer-tagline{font-size: 1rem;}
-  .pp-footer-logo{font-size: 1.2rem;}
+
+  .pp-footer-tagline {
+    font-size: 1rem;
+  }
+
+  .pp-footer-logo {
+    font-size: 1.2rem;
+  }
 
 }
 
@@ -820,8 +860,9 @@
     flex-direction: column;
     align-items: flex-start;
     padding: 1rem;
-    margin: 2rem auto;
+    margin: 5rem auto 2rem auto;
     gap: 1rem;
+    
   }
 
   .pp-hero-accent-bar {

@@ -80,8 +80,8 @@ export default function ProfilePage() {
   const total_income = JSON.parse(localStorage.getItem('total_income') || 'total_income').toLocaleString('en-IN', { style: 'currency', currency: 'INR' });
   const total_expense = JSON.parse(localStorage.getItem('total_expense') || 'total_expense').toLocaleString('en-IN', { style: 'currency', currency: 'INR' });
   const total_balance = JSON.parse(localStorage.getItem('total_balance') || 'total_balance').toLocaleString('en-IN', { style: 'currency', currency: 'INR' });
-  const incomePieColors: Record<string, string> = JSON.parse(localStorage.getItem('updatedIncomeColors') ?? '{}')
-  const expensePieColors: Record<string, string> = JSON.parse(localStorage.getItem('groupedExpenseColors') ?? '{}')
+  const incomePieColors: Record<string, string> = JSON.parse(localStorage.getItem('income_colors') ?? '{}')
+  const expensePieColors: Record<string, string> = JSON.parse(localStorage.getItem('expense_colors') ?? '{}')
 
   useEffect(() => {
     document.body.style.display = "block";
@@ -145,7 +145,9 @@ export default function ProfilePage() {
               <h1 className="pp-username">{username}</h1>
               <p className="pp-email">{email}</p>
               <span className="pp-member-pill">● Member since Jan 2024</span>
-              <button className="pp-edit-btn">Edit Profile</button>
+              <button className="pp-edit-btn edit-custom-hover" data-tooltip="Coming Soon...">
+                Edit Profile
+              </button>
             </div>
           </div>
 
@@ -365,7 +367,7 @@ export default function ProfilePage() {
         {/* ── BOTTOM ACTIONS ──────────────────────────────────────────── */}
         <div className="pp-actions">
           <button className="pp-action-signout" onClick={() => setOpenSignOut(true)}>Sign Out</button>
-          <button className="pp-action-edit">Edit Profile</button>
+          <button className="pp-action-edit edit-custom-hover" data-tooltip="Coming Soon...">Edit Profile</button>
         </div>
 
       </main>
