@@ -5,7 +5,7 @@ export const ExpenseItemSchema = z.object({
     category: z.string(),
     date: z.string(),
     expense: z.string(),
-    expenseAmount: z.number()
+    expenseAmount: z.number(),
 })
 
 export type ExpenseItem = z.infer<typeof ExpenseItemSchema>

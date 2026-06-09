@@ -1,29 +1,20 @@
-export default function useGenerateColor(){
-    console.log("useGenerateColor called")
-    
-    function generateColor() {
-        const hue1 = Math.floor(Math.random() * 360);
-        const hue2 = Math.floor(Math.random() * 360);
-        const hue3 = Math.floor(Math.random() * 360);
-        return `hsl(${hue1}, ${hue2}, ${hue3})`;
+export default function useGenerateColor() {
+
+    function generateColor(str) {
+        let hash = 0;
+        for (let i = 0; i < str.length; i++) {
+            hash = str.charCodeAt(i) + ((hash << 5) - hash);
+        }
+        const hue = Math.abs(hash) % 360;
+        return `hsl(${hue}, 65%, 55%)`;
     }
 
-    function generateIncomeColors(category){
-        const saveColor = JSON.parse(localStorage.getItem('income_colors'))
-
-        if(!saveColor[category]){
-            saveColor[category] = generateColor()
-            localStorage.setItem('income_colors', JSON.stringify(saveColor))
-        }
+    function generateIncomeColors(category) {
+        return generateColor(`income_${category}`);
     }
 
-    function generateExpenseColors(category){
-        const saveColor = JSON.parse(localStorage.getItem('expense_colors'))
-
-        if(!saveColor[category]){
-            saveColor[category] = generateColor()
-            localStorage.setItem('expense_colors', JSON.stringify(saveColor))
-        }
+    function generateExpenseColors(category) {
+        return generateColor(`expense_${category}`);
     }
 
     return { generateIncomeColors, generateExpenseColors }

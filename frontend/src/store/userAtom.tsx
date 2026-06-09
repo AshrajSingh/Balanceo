@@ -34,7 +34,7 @@ export const expenseAtom = atom<ExpenseItem[]>({
     default: [],
     effects: [
         ({ setSelf, onSet }) => {
-            const saved = localStorage.getItem("expenses")
+            const saved = JSON.parse(localStorage.getItem("expenses") || '[]')
             const users = localStorage.getItem("user")
 
             if (!users) return
@@ -45,11 +45,8 @@ export const expenseAtom = atom<ExpenseItem[]>({
 
             if (!token) return
 
-            if (!saved) return
-
             console.log('expense atom setSelf')
-            setSelf(JSON.parse(saved))
-
+            setSelf(saved)
 
             fetch(`${apiURL}/expensePage`, {
                 method: "GET",
@@ -66,7 +63,7 @@ export const expenseAtom = atom<ExpenseItem[]>({
                         category: items.category,
                         date: items.date,
                         expense: items.expense,
-                        expenseAmount: Number(items.expenseAmount)
+                        expenseAmount: Number(items.expenseAmount),
                     }))
                     setSelf(realData)
                     localStorage.setItem("expenses", JSON.stringify(realData))
@@ -83,8 +80,9 @@ export const incomeAtom = atom<IncomeItem[]>({
     default: [],
     effects: [
         ({ setSelf, onSet }) => {
-            const saved = localStorage.getItem("incomes")
+            const saved = JSON.parse(localStorage.getItem("incomes") || '[]')
             const users = localStorage.getItem("user")
+            console.log('saved income from atom: ', saved)
 
             if (!users) return
 
@@ -94,10 +92,8 @@ export const incomeAtom = atom<IncomeItem[]>({
 
             if (!token) return
 
-            if (!saved) return
-
             console.log('income setSelf called')
-            setSelf(JSON.parse(saved))
+            setSelf(saved)
 
             fetch(`${apiURL}/incomePage/income`, {
                 method: "GET",
@@ -114,7 +110,7 @@ export const incomeAtom = atom<IncomeItem[]>({
                         category: items.category,
                         date: items.date,
                         income: items.income,
-                        incomeAmount: Number(items.incomeAmount)
+                        incomeAmount: Number(items.incomeAmount),
                     }))
 
                     setSelf(realData)

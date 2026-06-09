@@ -13,15 +13,14 @@ export function IncomePageTable() {
     const [isGroupedView, setIsGroupedView] = useRecoilState(isGroupedViewState);
 
     async function deleteItems(row) {
-        console.log("income_id in jsx: ", row._id)
 
         try {
             const deletedIncome = await deleteIncome(row._id)
-            console.log("deletedIncome from IncomeTable.jsx: ", deletedIncome)
 
             if (deletedIncome) {
                 setData(prev => {
                     const updateData = prev.filter((items) => items._id !== row._id)
+                     console.log("before:", prev.length, "after:", updateData.length)
                     localStorage.setItem("incomes", JSON.stringify(updateData))
                     return updateData
                 })
@@ -36,8 +35,7 @@ export function IncomePageTable() {
     }
 
     function handleConfirmDelete(row) {
-        console.log("Confirm delete action")
-        console.log("Selected row for deletion: ", row)
+
         if (!row) return;
         const deleted = deleteItems(row);
         if (!deleted) {
@@ -49,7 +47,6 @@ export function IncomePageTable() {
     }
 
     function handleCancelDelete() {
-        console.log("Cancel delete action")
         setConfirmOpen(false);
     }
 
@@ -99,7 +96,6 @@ export function IncomePageTable() {
                         <th style={{ border: "1px solid white", padding: "8px", fontWeight: '500' }}>Amount</th>
                         <th style={{ border: "1px solid white", padding: "8px", fontWeight: '500' }}>Date</th>
                     </tr>
-                    {console.log("data in income table body: ", data)}
                 </thead>
                 <tbody>
                     {/* showing added data of the table */}
@@ -113,7 +109,6 @@ export function IncomePageTable() {
                         ) : data.map((row, index) => (
                             <tr key={row._id || index}>
                                 <td>{row.category.charAt(0).toUpperCase() + row.category.slice(1)}
-                                    {console.log("row data: ", row)}
                                 </td>
 
                                 <td>{row.income.charAt(0).toUpperCase() + row.income.slice(1)}</td>

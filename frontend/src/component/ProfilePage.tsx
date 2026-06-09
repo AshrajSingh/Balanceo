@@ -8,12 +8,14 @@ import "../styleSheets/profilePage.css";
 import { useRecoilValue } from "recoil";
 import { expenseAtom, groupedExpenseState, groupedIncomeState, groupTransaction, incomeAtom } from "../store/userAtom.js";
 import { toast } from "react-hot-toast";
+import Navbar from "./Navbar.jsx";
 
 // @ts-ignore
 import SignOutConfirm from "./signOutConfirm.jsx";
 // @ts-ignore
 import { useResetData } from "../hooks/logoutHook.js";
-import Navbar from "./Navbar.js";
+// @ts-ignore
+import useGenerateColor from "../hooks/generateColor.js";
 
 // ── Custom Tooltip ─────────────────────────────────────────────────────────────
 interface TooltipData {
@@ -70,7 +72,6 @@ export default function ProfilePage() {
   const expenseData = useRecoilValue(expenseAtom)
   const [openSignOut, setOpenSignOut] = useState(false)
   const resetData = useResetData() as () => void;
-
   const navigate = useNavigate();
 
   const userData = JSON.parse(localStorage.getItem("user") || "{}");
@@ -80,8 +81,8 @@ export default function ProfilePage() {
   const total_income = JSON.parse(localStorage.getItem('total_income') || 'total_income').toLocaleString('en-IN', { style: 'currency', currency: 'INR' });
   const total_expense = JSON.parse(localStorage.getItem('total_expense') || 'total_expense').toLocaleString('en-IN', { style: 'currency', currency: 'INR' });
   const total_balance = JSON.parse(localStorage.getItem('total_balance') || 'total_balance').toLocaleString('en-IN', { style: 'currency', currency: 'INR' });
-  const incomePieColors: Record<string, string> = JSON.parse(localStorage.getItem('income_colors') ?? '{}')
-  const expensePieColors: Record<string, string> = JSON.parse(localStorage.getItem('expense_colors') ?? '{}')
+  const { generateIncomeColors, generateExpenseColors } = useGenerateColor()
+
 
   useEffect(() => {
     document.body.style.display = "block";
@@ -110,7 +111,9 @@ export default function ProfilePage() {
   );
 
   // const transactions = view === "income" ? transactionsIncome : transactionsExpense;
-  const pieColors: Record<string, string> = view === "income" ? incomePieColors : expensePieColors;
+  const pieColors = (category: string) => view === "income"
+    ? generateIncomeColors(category)
+    : generateExpenseColors(category);
   const lineColor = view === "income" ? "#00c49f" : "#ff4d4d";
   const amtColor = (amt: string) => amt.startsWith("+") ? "#00c49f" : "#ff4d4d";
   const totalPie = categoryData.reduce((s: any, d: any) => s + d.totalAmount, 0);
@@ -260,7 +263,7 @@ export default function ProfilePage() {
                       paddingAngle={2}
                     >
                       {categoryData.map((_, i) => (
-                        <Cell key={i} fill={pieColors[_.category]} />
+                        <Cell key={i} fill={pieColors(_.category)} />
                       ))}
                     </Pie>
                     <Tooltip
@@ -278,7 +281,7 @@ export default function ProfilePage() {
               <div className="pp-pie-legend">
                 {categoryData?.map((d, i) => (
                   <div key={i} className="pp-legend-row">
-                    <span className="pp-legend-dot" style={{ background: pieColors[d.category] }} />
+                    <span className="pp-legend-dot" style={{ background: pieColors(d.category) }} />
                     <span className="pp-legend-name">{d.category}</span>
                     <span className="pp-legend-pct">{d.totalAmount}</span>
                   </div>

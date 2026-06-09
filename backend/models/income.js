@@ -5,5 +5,5 @@ export const incomeModel = mongoose.model('Income', {
     category: {type: String, required: true},
     income: { type: String, required: true, },
     incomeAmount: { type: Number, required: true },
-    date: { type: Date, default: Date.now }
+    date: { type: Date, default: Date.now },
 })

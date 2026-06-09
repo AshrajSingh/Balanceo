@@ -2,17 +2,18 @@ import { PieChart, Pie, Tooltip, Cell, ResponsiveContainer } from 'recharts';
 import { useRecoilValue } from 'recoil';
 import { expenseAtom, groupedExpenseState } from '../store/userAtom';
 import { useEffect, useState } from 'react';
+import useGenerateColor from "../hooks/generateColor";
 
 
 
 export default function TotalExpense() {
     const data = useRecoilValue(expenseAtom)
-    const colors = JSON.parse(localStorage.getItem("expense_colors")) || {}
     const groupedExpenseData = useRecoilValue(groupedExpenseState)
+    const {generateExpenseColors} = useGenerateColor();
 
 
     return <div>
-        <ResponsiveContainer width="75%" height={320} style={{ borderRadius: '10px', backgroundColor: '#1c1c1f', boxShadow: 'rgba(0, 0, 0, 0.4) 2px 4px 11px' }}>
+        <ResponsiveContainer width="75%" height={370} style={{ borderRadius: '10px', backgroundColor: '#1c1c1f', boxShadow: 'rgba(0, 0, 0, 0.4) 2px 4px 11px' }}>
             <p>Expense</p>
             <PieChart>
                 <Pie
@@ -25,7 +26,7 @@ export default function TotalExpense() {
                     label
                 >
                     {groupedExpenseData.map((entry, index) => (
-                        <Cell key={index} fill={colors[entry.category]} />
+                        <Cell key={index} fill={generateExpenseColors(entry.category)} />
                     ))}
                 </Pie>
                 <Tooltip />

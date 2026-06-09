@@ -35,7 +35,6 @@ const IncomePage = () => {
   const user_id = userData?.user_id
 
   const total_incomes = useTotalIncome().toLocaleString('en-IN', { style: 'currency', currency: 'INR' });
-  console.log("Income data: ", data)
 
 
   useEffect(() => {
@@ -57,19 +56,18 @@ const IncomePage = () => {
     if (!category || !income || !incomeAmount) {
       toast.error("Please fill all fields")
     }
-
+    
+    generateIncomeColors(category)
+    
     const payload = {
       user_id: user_id,
       category: category,
       income: income,
-      incomeAmount: Number(incomeAmount)
+      incomeAmount: Number(incomeAmount),
     }
-    console.log("Payload in incomeTable.jsx: ", payload)
-    generateIncomeColors(category)
 
 
     const response = await setUserIncome(payload)
-    console.log("response from setUserIncome: ", response)
     toast.success('Income added successfully!');
 
     setData(prev => [...prev, response])

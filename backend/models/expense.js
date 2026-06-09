@@ -5,5 +5,5 @@ export const expenseModel = mongoose.model('Expense', {
     category: {type: String, required: true},
     expense: {type: String, required: true},
     expenseAmount: {type: Number, required: true},
-    date: { type: Date, default: Date.now }
+    date: { type: Date, default: Date.now },
 });
